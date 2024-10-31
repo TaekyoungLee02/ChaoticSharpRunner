@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5480184890316243963}
   - component: {fileID: -6197932727333995872}
   m_Layer: 0
-  m_Name: Floor
+  m_Name: Floor 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,8 +47,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c01d412c5bd51be4baef40a8ea517756, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: 0
+  key: 1
   speed: 20
+  pool: {fileID: 0}
 --- !u!1 &4406069519132228232
 GameObject:
   m_ObjectHideFlags: 0
@@ -111,7 +112,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8f20394784651594685b63419b6e5f98, type: 2}
+  - {fileID: 2100000, guid: 3c710338822e8bb4ab55dda8da2368ac, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -216,7 +217,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3c710338822e8bb4ab55dda8da2368ac, type: 2}
+  - {fileID: 2100000, guid: 8f20394784651594685b63419b6e5f98, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -321,7 +322,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 19b944918a9d88949b82e3339ec96b60, type: 2}
+  - {fileID: 2100000, guid: 3c710338822e8bb4ab55dda8da2368ac, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

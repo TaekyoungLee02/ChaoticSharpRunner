@@ -2,9 +2,8 @@ using UnityEngine;
 
 public class HealItem : ItemBase
 {
-    public override void Use()
+    public override void Use(Player player)
     {
-        // 힐 코드 작성
-        // 플레이어 체력 늘리기.
+        player.health.Heal((int)itemValue);
     }
 }

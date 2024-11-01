@@ -13,11 +13,13 @@ public class ObjectPool : Singleton<ObjectPool>
     }
 
     public List<Pool> pools;
-    public Dictionary<string, Queue<GameObject>> poolDistionary;
+    public Dictionary<string, Queue<GameObject>> poolDictionary;
 
-    private void Awake()
+    public override void Awake()
     {
-        poolDistionary = new Dictionary<string, Queue<GameObject>>();
+        base.Awake();
+
+        poolDictionary = new Dictionary<string, Queue<GameObject>>();
         foreach (var pool in pools)
         {
             Queue<GameObject> objectPool = new Queue<GameObject>();
@@ -27,18 +29,18 @@ public class ObjectPool : Singleton<ObjectPool>
                 newObject.SetActive(false);
                 objectPool.Enqueue(newObject);
             }
-            poolDistionary.Add(pool.tag, objectPool);
+            poolDictionary.Add(pool.tag, objectPool);
         }
     }
 
 
     public GameObject SpawnFromPool(string inTag)
     {
-        if (!poolDistionary.ContainsKey(inTag))
+        if (!poolDictionary.ContainsKey(inTag))
         {
             return null;
         }
-        Queue<GameObject> objectPool = poolDistionary[inTag];
+        Queue<GameObject> objectPool = poolDictionary[inTag];
 
         int count = objectPool.Count;
         for (int i = 0; i < objectPool.Count; i++)

@@ -9,13 +9,11 @@ public class Test_Map : MonoBehaviour
     public Vector3 targetPosition;
     private Vector3 resetPosition;
 
-    public ObjectPool pool;
     public SpawnController controller;
     private MapController mapController;
 
     private void Awake()
     {
-        pool = GetComponentInParent<ObjectPool>();
         controller = GetComponentInParent<SpawnController>();
         mapController = GetComponentInParent<MapController>();
     }
@@ -23,15 +21,19 @@ public class Test_Map : MonoBehaviour
     private void Start()
     {
         targetPosition = new Vector3(0, 0, 0);
-        resetPosition = new Vector3(0, 0, 89.6f);
+        //resetPosition = new Vector3(0, 0, 89.6f);
+        resetPosition = new Vector3(0, 0, 90f);
     }
 
     private void FixedUpdate()
     {
         if (Vector3.Distance(transform.position, targetPosition) <= 0f)
         {
-            controller.GetMapObject(pool).transform.position = transform.position + resetPosition;
+            GameObject newMapObject = controller.GetMapObject(ObjectPool.Instance);
+            
+            newMapObject.transform.position = new Vector3(0, 0, 90f - mapController.MapSpeed() * Time.fixedDeltaTime);
             gameObject.SetActive(false);
+            return;
         }
         else
         {

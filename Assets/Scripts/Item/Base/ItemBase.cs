@@ -18,13 +18,13 @@ public abstract class ItemBase : MonoBehaviour
         duration = so.duration;
     }
 
-    public abstract void Use(); //Player 매개변수로 받음
+    public abstract void Use(Player player); //Player 매개변수로 받음
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Use();
+            Use(collision.gameObject.GetComponent<Player>());
             // 풀로 돌려놓기
         }
     }

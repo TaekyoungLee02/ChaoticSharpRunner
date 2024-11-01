@@ -1,24 +1,38 @@
 using System;
 using UnityEngine;
+using System.Collections;
 
-public class PlayerHealth : MonoBehaviour
+public class PlayerStats : MonoBehaviour
 {
-    [SerializeField] private int health;
-    [SerializeField] private int life;
+    [SerializeField] private int _health;
+    [SerializeField] private int _life;
+
+    public int health
+    {
+        get => _health;
+        private set => _health = value;
+    }
+
+    public int life
+    {
+        get => _life;
+        private set => _life = value;
+    }
+
+    public bool isInvincible { get; private set; }
 
     [SerializeField] private int maxHealth = 100;
     [SerializeField] private int maxLife = 3;
+    [SerializeField] private float invincibilityDuration = 3;
 
     public event Action<int> OnHealthChanged;
     public event Action<int> OnLifeChanged;
     public event Action OnPlayerDeath;
 
-    public int GetHealth() => health;
-
-    public int GetLife() => life;
-
     public void TakeDamage(int damage)
     {
+        if (isInvincible) return;
+
         health = Mathf.Clamp(health - damage, 0, maxHealth);
 
         OnHealthChanged?.Invoke(health);
@@ -26,6 +40,11 @@ public class PlayerHealth : MonoBehaviour
         if (health <= 0)
         {
             Die();
+        }
+
+        else
+        {
+            StartInvincibility(invincibilityDuration);
         }
     }
 
@@ -36,15 +55,14 @@ public class PlayerHealth : MonoBehaviour
         OnHealthChanged?.Invoke(health);
     }
 
-    void Die()
+    private void Die()
     {
         if (life > 0)
         {
             life--;
-
             ResetHealth();
-
             OnLifeChanged?.Invoke(life);
+            StartInvincibility(invincibilityDuration);
         }
 
         else
@@ -53,7 +71,7 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    void GameOver()
+    private void GameOver()
     {
         OnPlayerDeath?.Invoke();
     }
@@ -61,6 +79,7 @@ public class PlayerHealth : MonoBehaviour
     public void ResetHealth()
     {
         health = maxHealth;
+        isInvincible = false;
 
         OnHealthChanged?.Invoke(health);
     }
@@ -69,8 +88,24 @@ public class PlayerHealth : MonoBehaviour
     {
         health = maxHealth;
         life = maxLife;
+        isInvincible = false;
 
         OnHealthChanged?.Invoke(health);
         OnLifeChanged?.Invoke(life);
+    }
+
+    public void StartInvincibility(float duration)
+    {
+        if (!isInvincible)
+        {
+            StartCoroutine(InvincibilityCoroutine(duration));
+        }
+    }
+
+    private IEnumerator InvincibilityCoroutine(float duration)
+    {
+        isInvincible = true;
+        yield return new WaitForSeconds(duration);
+        isInvincible = false;
     }
 }

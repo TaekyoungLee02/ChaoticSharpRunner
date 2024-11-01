@@ -19,14 +19,14 @@ public class MapController : MonoBehaviour
         minSpeed = speed;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        ranTime += Time.deltaTime;
+        ranTime += Time.fixedDeltaTime;
     }
 
     public float MapSpeed()
     {
-        ResetSpeed();
+        //ResetSpeed();
         AccelerationSpeed();
 
         return speed;
@@ -50,7 +50,7 @@ public class MapController : MonoBehaviour
     {
         if (ranTime >= accelerationTime)
         {
-            speed += 0.01f;
+            speed += 1f;
             ranTime = 0f;
         }
 

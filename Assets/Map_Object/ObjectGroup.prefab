@@ -46,6 +46,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pool: {fileID: 0}
+  mapArray:
+  - CoinMap
+  - BaseMap
+  - errerMap
 --- !u!114 &8119349986118429672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59,15 +63,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pools:
-  - key: 0
+  - key: CoinMap
     prefab: {fileID: 3443293322741268409, guid: 9e2fa4d56a0e51b4eb806c57f8944d1f,
       type: 3}
     size: 4
-  - key: 1
+  - key: BaseMap
     prefab: {fileID: 3443293322741268409, guid: 446db78b2631bdf4abf05b074b9d937d,
       type: 3}
     size: 4
-  - key: 2
+  - key: errerMap
     prefab: {fileID: 3443293322741268409, guid: 18c5cf09ee6532841a7745cab479357a,
       type: 3}
     size: 4

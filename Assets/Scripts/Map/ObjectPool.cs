@@ -7,17 +7,17 @@ public class ObjectPool : MonoBehaviour
     [System.Serializable]
     public class Pool
     {
-        public int key;
+        public string tag;
         public GameObject prefab;
         public int size;
     }
 
     public List<Pool> pools;
-    public Dictionary<int, Queue<GameObject>> poolDistionary;
+    public Dictionary<string, Queue<GameObject>> poolDistionary;
 
     private void Awake()
     {
-        poolDistionary = new Dictionary<int, Queue<GameObject>>();
+        poolDistionary = new Dictionary<string, Queue<GameObject>>();
         foreach (var pool in pools)
         {
             Queue<GameObject> objectPool = new Queue<GameObject>();
@@ -27,42 +27,42 @@ public class ObjectPool : MonoBehaviour
                 newObject.SetActive(false);
                 objectPool.Enqueue(newObject);
             }
-            poolDistionary.Add(pool.key, objectPool);
+            poolDistionary.Add(pool.tag, objectPool);
         }
     }
 
 
-    public GameObject SpawnFromPool(int inKey)
+    public GameObject SpawnFromPool(string inTag)
     {
-        if (!poolDistionary.ContainsKey(inKey))
+        if (!poolDistionary.ContainsKey(inTag))
         {
             return null;
         }
-        Queue<GameObject> objectPool = poolDistionary[inKey];
+        Queue<GameObject> objectPool = poolDistionary[inTag];
 
         int count = objectPool.Count;
         for (int i = 0; i < objectPool.Count; i++)
         {
-            GameObject outObj = objectPool.Dequeue();
+            GameObject outObject = objectPool.Dequeue();
 
-            if (!outObj.activeInHierarchy)
+            if (!outObject.activeInHierarchy)
             {
-                outObj.SetActive(true);
-                objectPool.Enqueue(outObj);
-                return outObj;
+                outObject.SetActive(true);
+                objectPool.Enqueue(outObject);
+                return outObject;
             }
 
             count++;
-            objectPool.Enqueue(outObj);
+            objectPool.Enqueue(outObject);
         }
 
         if (count == objectPool.Count)
         {
-            GameObject outNewObj = Instantiate(objectPool.Peek());
-            outNewObj.SetActive(true);
-            objectPool.Enqueue(outNewObj);
+            GameObject outNewObject = Instantiate(objectPool.Peek());
+            outNewObject.SetActive(true);
+            objectPool.Enqueue(outNewObject);
 
-            return outNewObj;
+            return outNewObject;
         }
 
         return null;

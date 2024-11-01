@@ -1,20 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public enum ObjectType
 {
-    Map = 0,
-    Item = 10,
-    Obstacle = 20,
-}
-
-public enum MapType
-{
-    CoinMap,
-    BaseMap,
-    errerMap,
-    Max,
+    Item,
+    Obstacle,
 }
 
 public enum ItemType
@@ -31,15 +20,23 @@ public class SpawnController : MonoBehaviour
 {
     public ObjectPool pool;
 
+    public string[] mapArray = { "CoinMap", "BaseMap", "errerMap" };
+
     private void Awake()
     {
         pool = GetComponent<ObjectPool>();
 
         for (int i = 0; i < 4; i++)
         {
-            int randomMap = Random.Range((int)ObjectType.Map, (int)ObjectType.Map + (int)MapType.Max);
-            GameObject newMap = pool.SpawnFromPool(randomMap);
-            newMap.transform.position = new Vector3(0, 0, i * 30);
+            GetMapObject(pool).transform.position = new Vector3(0, 0, i * 30);
         }
+    }
+
+    public GameObject GetMapObject(ObjectPool inPool)
+    {
+        int randomMap = Random.Range(0, mapArray.Length);
+        GameObject outNewMap = inPool.SpawnFromPool(mapArray[randomMap]);
+
+        return outNewMap;
     }
 }

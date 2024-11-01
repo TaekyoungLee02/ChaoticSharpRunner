@@ -1,8 +1,12 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class MapScroller : MonoBehaviour
+public class Test_Map : MonoBehaviour
 {
-    private Vector3 targetPosition;
+
+    float speed = 20f;
+    public Transform target;
     private Vector3 resetPosition;
 
     public ObjectPool pool;
@@ -18,13 +22,13 @@ public class MapScroller : MonoBehaviour
 
     private void Start()
     {
-        targetPosition = new Vector3(0, 0, 0);
-        resetPosition = new Vector3(0, 0, 89f);
+        //targetPosition = new Vector3(0, 0, 0);
+        resetPosition = new Vector3(0, 0, 90f);
     }
 
     private void FixedUpdate()
     {
-        if (Vector3.Distance(transform.position, targetPosition) <= 0.01f)
+        if (Vector3.Distance(transform.position, target.position) <= 0.01f)
         {
             controller.GetMapObject(pool).transform.position = resetPosition;
             gameObject.SetActive(false);
@@ -32,8 +36,7 @@ public class MapScroller : MonoBehaviour
         else
         {
             transform.position = Vector3.MoveTowards
-                (transform.position, targetPosition, mapController.MapSpeed()
-                * Time.fixedDeltaTime);
+                (transform.position, target.position, speed* Time.fixedDeltaTime);
         }
     }
 }

@@ -26,7 +26,7 @@ public class SpawnController : MonoBehaviour
     {
         pool = GetComponent<ObjectPool>();
 
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < 3; i++)
         {
             GetMapObject(pool).transform.position = new Vector3(0, 0, i * 30);
         }

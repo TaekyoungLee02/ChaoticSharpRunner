@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8427180085478130127}
   - component: {fileID: 5050921022093379558}
   - component: {fileID: 8119349986118429672}
+  - component: {fileID: 7814116693616036394}
   m_Layer: 0
   m_Name: ObjectGroup
   m_TagString: Untagged
@@ -63,15 +64,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pools:
-  - key: CoinMap
-    prefab: {fileID: 3443293322741268409, guid: 9e2fa4d56a0e51b4eb806c57f8944d1f,
-      type: 3}
-    size: 4
-  - key: BaseMap
+  - tag: CoinMap
     prefab: {fileID: 3443293322741268409, guid: 446db78b2631bdf4abf05b074b9d937d,
       type: 3}
     size: 4
-  - key: errerMap
+  - tag: BaseMap
+    prefab: {fileID: 3443293322741268409, guid: 9e2fa4d56a0e51b4eb806c57f8944d1f,
+      type: 3}
+    size: 4
+  - tag: errerMap
     prefab: {fileID: 3443293322741268409, guid: 18c5cf09ee6532841a7745cab479357a,
       type: 3}
     size: 4
+--- !u!114 &7814116693616036394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2572425638970633174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27e20e6bead84bd4c9d3e051e69c9f5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 20
+  ranTime: 0
+  accelerationTime: 1
+  minSpeed: 0
+  maxSpeed: 100
+  playerDamage: 0

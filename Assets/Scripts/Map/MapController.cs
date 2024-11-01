@@ -6,24 +6,57 @@ public class MapController : MonoBehaviour
 {
     public float speed;
 
-    public int sccelerationCount;
+    public float ranTime;
+    public float accelerationTime;
 
-    public float Break(float inSpeed, float inMinSpeed)
+    public float minSpeed;
+    public float maxSpeed;
+
+    public bool playerDamage = false;
+
+    private void Start()
     {
-        // TODO :: 플레이어가 데미지를 입을시 최소 속도로 변경
-        if (inSpeed <= inMinSpeed)
-        {
-            return speed = inMinSpeed;
-        }
-        return inSpeed;
+        minSpeed = speed;
     }
 
-    public float acceleration(float inSpeed, float inMaxSpeed)
+    private void Update()
     {
-        if (inSpeed >= inMaxSpeed)
+        //ranTime += Time.deltaTime;
+    }
+
+    public float MapSpeed()
+    {
+        ResetSpeed();
+        //AccelerationSpeed();
+
+        return speed;
+    }
+
+    public void ResetSpeed()
+    {
+        if (playerDamage)
         {
-            return speed = inMaxSpeed;
+            ranTime = 0f;
+            speed = minSpeed;
         }
-        return inSpeed;
+
+        if (speed <= minSpeed)
+        {
+            speed = minSpeed;
+        }
+    }
+
+    public void AccelerationSpeed()
+    {
+        if (ranTime >= accelerationTime)
+        {
+            speed++;
+            ranTime = 0f;
+        }
+
+        if (speed >= maxSpeed)
+        {
+            speed = maxSpeed;
+        }
     }
 }

@@ -5,9 +5,14 @@ public class CoinItem : ItemBase
 
     private bool magnet;
 
-    public override void Use()
+    public override void Use(Player player)
     {
-        // 점수 오르는 코드 작성
+        ScoreManager.Instance.AddScore((int)itemValue);
+    }
+
+    public void EnableMagnet()
+    {
+        magnet = true;
     }
 
     private void FixedUpdate()

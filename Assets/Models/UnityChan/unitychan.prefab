@@ -1348,7 +1348,7 @@ GameObject:
   - component: {fileID: 7481445771362445567}
   - component: {fileID: 2648179083277275165}
   m_Layer: 0
-  m_Name: unitychan
+  m_Name: UnityChan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

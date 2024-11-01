@@ -1,18 +1,57 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
-public class ScoreManager : MonoBehaviour
+public class ScoreManager : Singleton<ScoreManager>
 {
-    // Start is called before the first frame update
+    private int currentScore = 0;
+    private int highScore = 0;
+
+    public event Action<int> OnScoreChanged;
+    public event Action<int> OnHighScoreChanged;
+
     void Start()
     {
-        
+        LoadHighScore();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void LoadHighScore()
     {
-        
+        highScore = PlayerPrefs.GetInt("HighScore", 0);
+        OnHighScoreChanged?.Invoke(highScore);
+    }
+
+    private void SaveHighScore()
+    {
+        PlayerPrefs.SetInt("HighScore", highScore);
+        PlayerPrefs.Save();
+    }
+
+    public void AddScore(int amount)
+    {
+        currentScore += amount;
+        OnScoreChanged?.Invoke(currentScore);
+
+        if (currentScore > highScore)
+        {
+            highScore = currentScore;
+            OnHighScoreChanged?.Invoke(highScore);
+            SaveHighScore();
+        }
+    }
+
+    public void ResetScore()
+    {
+        currentScore = 0;
+        OnScoreChanged?.Invoke(currentScore);
+    }
+
+    public int GetCurrentScore()
+    {
+        return currentScore;
+    }
+
+    public int GetHighScore()
+    {
+        return highScore;
     }
 }

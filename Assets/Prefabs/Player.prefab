@@ -99,7 +99,6 @@ GameObject:
   - component: {fileID: 668456947544127848}
   - component: {fileID: 1089103838619226881}
   - component: {fileID: 9196495298508123162}
-  - component: {fileID: 6010415353418905692}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -225,21 +224,6 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
---- !u!114 &6010415353418905692
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4755950755449936372}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ca2a1bcff1c42b4b9f3e010955a5640, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerTransform: {fileID: 0}
-  offset: {x: 0, y: 6, z: -8}
-  followSpeed: 5
 --- !u!1 &5369883222445606020
 GameObject:
   m_ObjectHideFlags: 0
@@ -255,7 +239,7 @@ GameObject:
   - component: {fileID: 5177942746072013064}
   - component: {fileID: 587615861267962601}
   - component: {fileID: 2988547027513100558}
-  - component: {fileID: 8943152208159040664}
+  - component: {fileID: 7339626899708200115}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -303,7 +287,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 120
@@ -448,8 +432,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 20
-  jumpForce: 70
-  slideDuration: 0.5
+  jumpForce: 200
+  slideDuration: 1
+  fallMultiplier: 1.25
+  customGravity: -30
   slideCollider: {fileID: 4368250036291360519}
   groundLayerMask:
     serializedVersion: 2
@@ -467,8 +453,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44261f88dbdf1d74593102659961199d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 0
+  life: 0
   maxHealth: 100
   maxLife: 3
+  invincibilityDuration: 0
 --- !u!114 &2988547027513100558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -484,7 +473,7 @@ MonoBehaviour:
   maxGauge: 100
   gaugeRechargeRate: 1
   gaugeDrainRate: 10
---- !u!114 &8943152208159040664
+--- !u!114 &7339626899708200115
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -493,11 +482,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 5369883222445606020}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1bb519fbfa1603248b33e57e1f74fc3e, type: 3}
+  m_Script: {fileID: 11500000, guid: 9ca2a1bcff1c42b4b9f3e010955a5640, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  avoidScore: 10
-  obstacleDamage: 10
+  cameraTransform: {fileID: 0}
+  offset: {x: 0, y: 5, z: -10}
+  followSpeed: 5
 --- !u!1 &7993412503474823617
 GameObject:
   m_ObjectHideFlags: 0

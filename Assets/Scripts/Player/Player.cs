@@ -3,13 +3,13 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public PlayerController controller { get; private set; }
-    public PlayerHealth health { get; private set; }
+    public PlayerStats stats { get; private set; }
     public PlayerAbility ability { get; private set; }
 
     void Awake()
     {
         controller = GetComponent<PlayerController>();
-        health = GetComponent<PlayerHealth>();
+        stats = GetComponent<PlayerStats>();
         ability = GetComponent<PlayerAbility>();
 
         GameManager.Instance.player = this;
@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     public void InitializePlayer()
     {
         controller.InitializeMovement();
-        health.InitializeHealth();
+        stats.InitializeHealth();
         ability.InitializeAbility();
         ResetPosition();        
     }
@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
     public void ResetPlayer()
     {
         controller.InitializeMovement();
-        health.ResetHealth();
+        stats.ResetHealth();
         ability.InitializeAbility();
         ResetPosition();
     }

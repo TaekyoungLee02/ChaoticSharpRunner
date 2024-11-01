@@ -6,7 +6,7 @@ public class ObstacleCollisionProcessor : MonoBehaviour
     [SerializeField] private int avoidScore = 10;
     [SerializeField] private int obstacleDamage = 10;
 
-    private PlayerHealth playerHealth;
+    private PlayerStats playerStats;
     private Transform playerTransform;
 
     private bool hasPassedPlayer = false; // 장애물이 플레이어를 지나갔는지 확인
@@ -17,7 +17,7 @@ public class ObstacleCollisionProcessor : MonoBehaviour
 
     void Start()
     {
-        playerHealth = GameManager.Instance.player.health;
+        playerStats = GameManager.Instance.player.stats;
         playerTransform = GameManager.Instance.player.transform;
     }
 
@@ -59,7 +59,7 @@ public class ObstacleCollisionProcessor : MonoBehaviour
 
     private void OnHitObstacle()
     {
-        playerHealth.TakeDamage(obstacleDamage);
+        playerStats.TakeDamage(obstacleDamage);
         OnHitObstacleEvent?.Invoke();
     }
 

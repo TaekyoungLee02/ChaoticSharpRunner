@@ -11,7 +11,7 @@ public class GameManager : Singleton<GameManager>
     void Start()
     {
         InitializeGame();
-        player.health.OnPlayerDeath += EndGame;
+        player.stats.OnPlayerDeath += EndGame;
     }
 
     private void InitializeGame()

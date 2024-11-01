@@ -14,6 +14,9 @@ public class PlayerController : MonoBehaviour
     private bool isSliding = false;
     private int jumpCount = 0;
 
+    [SerializeField] private float fallMultiplier = 2.5f;
+    [SerializeField] private float customGravity = -9.81f;
+
     private float originalColliderHeight;
     private Vector3 originalColliderCenter;
 
@@ -37,27 +40,49 @@ public class PlayerController : MonoBehaviour
         targetPosition.z = transform.position.z;
 
         if (desiredLane == 0)
+        {
             targetPosition.x = -LANE_DISTANCE;
+        }
+
         else if (desiredLane == 1)
+        {
             targetPosition.x = 0;
+        }
+
         else if (desiredLane == 2)
+        {
             targetPosition.x = LANE_DISTANCE;
+        }
 
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
+    }
+
+    private void FixedUpdate()
+    {
+        if (rb.velocity.y < 0)
+        {
+            rb.AddForce(Vector3.up * customGravity * fallMultiplier, ForceMode.Acceleration);
+        }
+
+        else
+        {
+            rb.AddForce(Vector3.up * customGravity, ForceMode.Acceleration);
+        }
     }
 
     public void OnMoveLeft(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)
         {
-            if (desiredLane > 0 && !isSliding)
+            if (desiredLane > 0)
             {
                 desiredLane--; // 왼쪽으로 레인 이동
             }
+
             else if (desiredLane == 0)
             {
                 // 왼쪽 끝에서 왼쪽 이동 시도 시 데미지 처리
-                collisionProcessor.TriggerHitObstacle();
+                //collisionProcessor.TriggerHitObstacle();
             }
         }
     }
@@ -66,21 +91,22 @@ public class PlayerController : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Performed)
         {
-            if (desiredLane < 2 && !isSliding)
+            if (desiredLane < 2)
             {
                 desiredLane++; // 오른쪽으로 레인 이동
             }
+
             else if (desiredLane == 2)
             {
                 // 오른쪽 끝에서 오른쪽 이동 시도 시 데미지 처리
-                collisionProcessor.TriggerHitObstacle();
+                //collisionProcessor.TriggerHitObstacle();
             }
         }
     }
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Started && (IsGrounded() || jumpCount < 2) && !isSliding)
+        if (context.phase == InputActionPhase.Started && (IsGrounded() || jumpCount < 2))
         {
             rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
@@ -103,6 +129,7 @@ public class PlayerController : MonoBehaviour
         {
             jumpCount = 0;
         }
+
         return grounded;
     }
 

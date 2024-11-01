@@ -37,6 +37,7 @@ public class PlayerAbility : MonoBehaviour
         {
             StartAbility();
         }
+
         else if (context.canceled)
         {
             EndAbility();

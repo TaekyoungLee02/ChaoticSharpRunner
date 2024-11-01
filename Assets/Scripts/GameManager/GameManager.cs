@@ -1,18 +1,41 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
-    // Start is called before the first frame update
+    public Player player;
+
+    public event Action OnGameReset;
+    public event Action OnGameOver;
+
     void Start()
     {
-        
+        InitializeGame();
+        player.health.OnPlayerDeath += EndGame;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void InitializeGame()
     {
-        
+        player.InitializePlayer();
+        //UI
+        //맵
+        //아이템효과
+    }
+
+    public void ResetGame()
+    {
+        player.ResetPlayer();
+        OnGameReset?.Invoke();
+    }
+
+    public void EndGame()
+    {
+        OnGameOver?.Invoke();
+        //UIManager.Instance.ShowGameOverUI();
+    }
+
+    public void RestartGame()
+    {
+        InitializeGame();
     }
 }

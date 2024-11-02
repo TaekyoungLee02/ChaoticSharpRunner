@@ -10,10 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8427180085478130127}
   - component: {fileID: 5050921022093379558}
-  - component: {fileID: 8119349986118429672}
   - component: {fileID: 7814116693616036394}
   m_Layer: 0
-  m_Name: ObjectGroup
+  m_Name: MapObjectGroup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -51,31 +50,8 @@ MonoBehaviour:
   - BaseMap
   - errerMap
   mapObjectArray: []
---- !u!114 &8119349986118429672
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2572425638970633174}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6dd48cf5d7d41a44854be31c6ac77f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pools:
-  - tag: CoinMap
-    prefab: {fileID: 3443293322741268409, guid: 5ca6a7c6e64ec08488a8579e8e1f3f30,
-      type: 3}
-    size: 4
-  - tag: BaseMap
-    prefab: {fileID: 3443293322741268409, guid: 9e2fa4d56a0e51b4eb806c57f8944d1f,
-      type: 3}
-    size: 4
-  - tag: errerMap
-    prefab: {fileID: 3443293322741268409, guid: 4c26cf254d7484d46998dd2fda4bab1b,
-      type: 3}
-    size: 4
+  mapSpawnCount: 4
+  mapSpawnDistance: 30
 --- !u!114 &7814116693616036394
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,47 +1,58 @@
 using System;
 using UnityEngine;
-using UnityEngine.Events;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ColorPicker : MonoBehaviour {
+public class ColorPicker : MonoBehaviour, IPointerDownHandler, IDragHandler {
+    public event Action<Color> ColorPreview;
+
+    [SerializeField] RectTransform aim;
+
     private RectTransform rect;
     private Texture2D colorTexture;
+
     private Color color;
+    private Vector2 initialAimPosition;
 
-    public event Action<Color> ColorPreview;
-    public event Action<Color> ColorSelect;
-    public event Action Close;
+    public Color CurrentColor {
+        get => color;
+    }
 
-    private void Start() {
+    private void Awake() {
         rect = GetComponent<RectTransform>();
         colorTexture = GetComponent<Image>().mainTexture as Texture2D;
     }
 
-    private void Update() {
-        Vector2 mousePos = Input.mousePosition;
-        if (RectTransformUtility.RectangleContainsScreenPoint(rect, mousePos)) {
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(rect, Input.mousePosition, null, out Vector2 delta);
+    private void OnEnable() {
+        initialAimPosition = aim.localPosition;
+    }
 
-            float x = Mathf.Clamp(delta.x / rect.rect.width, 0f, 1f);
-            float y = Mathf.Clamp(delta.y / rect.rect.height, 0f, 1f);
+    public void OnDrag(PointerEventData eventData) {
+        Vector2 localPos;
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(rect, eventData.position, null, out localPos);
 
-            int tx = Mathf.RoundToInt(x * colorTexture.width);
-            int ty = Mathf.RoundToInt(y * colorTexture.height);
+        localPos = new Vector2(
+            Mathf.Clamp(localPos.x, 1f, rect.rect.width - 1f),
+            Mathf.Clamp(localPos.y, 1f, rect.rect.height - 1f));
 
-            color = colorTexture.GetPixel(tx, ty);
+        aim.localPosition = localPos;
 
-            ColorPreview?.Invoke(color);
+        float x = localPos.x / rect.rect.width;
+        float y = localPos.y / rect.rect.height;
 
-            if (Input.GetMouseButtonDown(0)) {
-                ColorSelect?.Invoke(color);
-                Close?.Invoke();
-                gameObject.SetActive(false);
-            }
-        } else {
-            if (Input.GetMouseButtonDown(0)) {
-                Close?.Invoke();
-                gameObject.SetActive(false);
-            }
-        }
+        int tx = Mathf.RoundToInt(x * colorTexture.width);
+        int ty = Mathf.RoundToInt(y * colorTexture.height);
+
+        color = colorTexture.GetPixel(tx, ty);
+
+        ColorPreview?.Invoke(color);
+    }
+
+    public void OnPointerDown(PointerEventData eventData) {
+        OnDrag(eventData);
+    }
+
+    public void ResetAimPosition() {
+        aim.localPosition = initialAimPosition;
     }
 }

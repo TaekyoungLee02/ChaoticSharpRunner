@@ -4,41 +4,63 @@ using UnityEngine;
 
 public class Test_Map : MonoBehaviour
 {
-    float speed = 20f;
-
     public Vector3 targetPosition;
-    private Vector3 resetPosition;
 
-    public SpawnController controller;
+    public GameObject spawnPositionObject;
+
+    public SpawnController spawnController;
     private MapController mapController;
 
     private void Awake()
     {
-        controller = GetComponentInParent<SpawnController>();
+        spawnController = GetComponentInParent<SpawnController>();
         mapController = GetComponentInParent<MapController>();
     }
 
     private void Start()
     {
         targetPosition = new Vector3(0, 0, 0);
-        //resetPosition = new Vector3(0, 0, 89.6f);
-        resetPosition = new Vector3(0, 0, 90f);
+    }
+
+    private void OnEnable()
+    {
+        if (spawnController.mapObjectArray.Count > 0)
+        {
+            spawnPositionObject = spawnController.mapObjectArray
+                [spawnController.mapObjectArray.Count - 1];
+
+            transform.position =
+                spawnPositionObject.transform.position + new Vector3(0, 0, 30f);
+        }
+    }
+
+    private void Update()
+    {
+        if (Vector3.Distance(transform.position, targetPosition) <= 0f)
+        {
+            PositionReSet();
+        }
     }
 
     private void FixedUpdate()
     {
-        if (Vector3.Distance(transform.position, targetPosition) <= 0f)
-        {
-            GameObject newMapObject = controller.GetMapObject(ObjectPool.Instance);
-            
-            newMapObject.transform.position = new Vector3(0, 0, 90f - mapController.MapSpeed() * Time.fixedDeltaTime);
-            gameObject.SetActive(false);
-            return;
-        }
-        else
-        {
-            transform.position = Vector3.MoveTowards
-                (transform.position, targetPosition, mapController.MapSpeed() * Time.fixedDeltaTime);
-        }
+        MapMovement();
+    }
+
+    private void PositionReSet()
+    {
+        GameObject newMapObject = spawnController.
+            GetMapObject(ObjectPool.Instance);
+        spawnController.mapObjectArray.Add(newMapObject);
+
+        gameObject.SetActive(false);
+        spawnController.mapObjectArray.Remove(gameObject);
+    }
+
+    private void MapMovement()
+    {
+        transform.position = Vector3.MoveTowards
+            (transform.position, targetPosition, mapController.
+            MapSpeed() * Time.fixedDeltaTime);
     }
 }

@@ -26,7 +26,7 @@ public class MapController : MonoBehaviour
 
     public float MapSpeed()
     {
-        //ResetSpeed();
+        ResetSpeed();
         AccelerationSpeed();
 
         return speed;
@@ -50,7 +50,7 @@ public class MapController : MonoBehaviour
     {
         if (ranTime >= accelerationTime)
         {
-            speed += 1f;
+            speed += 1;
             ranTime = 0f;
         }
 

@@ -46,17 +46,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pools:
   - tag: CoinMap
-    prefab: {fileID: 3443293322741268409, guid: 9e2fa4d56a0e51b4eb806c57f8944d1f,
+    prefab: {fileID: 3443293322741268409, guid: a728d29186d790c4ab8fc14e9fe4f46f,
       type: 3}
-    size: 5
+    size: 7
     spawnPosition: {fileID: 0}
   - tag: BaseMap
-    prefab: {fileID: 3443293322741268409, guid: 5ca6a7c6e64ec08488a8579e8e1f3f30,
+    prefab: {fileID: 3443293322741268409, guid: 7654b395db529cc47815718580c5bac3,
       type: 3}
-    size: 5
+    size: 7
     spawnPosition: {fileID: 0}
   - tag: errerMap
-    prefab: {fileID: 3443293322741268409, guid: 4c26cf254d7484d46998dd2fda4bab1b,
+    prefab: {fileID: 3443293322741268409, guid: 6aa5b003955d73744b13ffe8a8f43e4a,
       type: 3}
-    size: 5
+    size: 7
     spawnPosition: {fileID: 0}

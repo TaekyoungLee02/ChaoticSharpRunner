@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5480184890316243963}
   - component: {fileID: 8521464279687594082}
   m_Layer: 0
-  m_Name: BaseMap
+  m_Name: CoinMap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

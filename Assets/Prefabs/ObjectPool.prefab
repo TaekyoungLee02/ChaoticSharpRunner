@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7246666002619155980
+--- !u!1 &1150666432235979291
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,8 +8,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 31674669345881209}
-  - component: {fileID: 5215422389687516065}
+  - component: {fileID: 5633529612980048842}
+  - component: {fileID: 7349342064437688725}
   m_Layer: 0
   m_Name: ObjectPool
   m_TagString: Untagged
@@ -17,13 +17,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &31674669345881209
+--- !u!4 &5633529612980048842
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7246666002619155980}
+  m_GameObject: {fileID: 1150666432235979291}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 6.78903, y: -6.9197617, z: 40.646904}
@@ -32,13 +32,13 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5215422389687516065
+--- !u!114 &7349342064437688725
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7246666002619155980}
+  m_GameObject: {fileID: 1150666432235979291}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e6dd48cf5d7d41a44854be31c6ac77f6, type: 3}
@@ -46,17 +46,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pools:
   - tag: CoinMap
-    prefab: {fileID: 3443293322741268409, guid: 5ca6a7c6e64ec08488a8579e8e1f3f30,
-      type: 3}
-    size: 4
-    spawnPosition: {fileID: 0}
-  - tag: BaseMap
     prefab: {fileID: 3443293322741268409, guid: 9e2fa4d56a0e51b4eb806c57f8944d1f,
       type: 3}
-    size: 4
+    size: 5
+    spawnPosition: {fileID: 0}
+  - tag: BaseMap
+    prefab: {fileID: 3443293322741268409, guid: 5ca6a7c6e64ec08488a8579e8e1f3f30,
+      type: 3}
+    size: 5
     spawnPosition: {fileID: 0}
   - tag: errerMap
     prefab: {fileID: 3443293322741268409, guid: 4c26cf254d7484d46998dd2fda4bab1b,
       type: 3}
-    size: 4
+    size: 5
     spawnPosition: {fileID: 0}

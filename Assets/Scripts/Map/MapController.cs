@@ -14,15 +14,15 @@ public class MapController : MonoBehaviour
     public float saveSpeed;
 
     // TODO :: PlayerAbility
-    bool inPlayerDamage = false;
-    bool inPlayeritem = false;
+    public bool inPlayerDamage = false;
+    public bool inPlayeritem = false;
 
     private void Start()
     {
         minSpeed = speed;
 
-        GameManager.Instance.player.ability.OnSlowDown += ResetSpeed;
-        GameManager.Instance.player.ability.OnRestoreSpeed += AccelerationSpeed;
+        //GameManager.Instance.player.ability.OnSlowDown += ResetSpeed;
+        //GameManager.Instance.player.ability.OnRestoreSpeed += AccelerationSpeed;
     }
 
     private void FixedUpdate()
@@ -43,13 +43,13 @@ public class MapController : MonoBehaviour
 
     public void ResetSpeed()
     {
-        if (inPlayeritem)
+        if (inPlayeritem) // 조건 바꾸기
         { // 아이템 효과가 활성화 상태라면
             saveSpeed = speed;
             speed = minSpeed; // TODO :: 감소량 변경
             // 속도 저장 후 변경
         }
-        else if(inPlayerDamage && !inPlayeritem)
+        else if (inPlayerDamage && !inPlayeritem)
         { // 아이템 효과가 없을 때 데미지를 입는다면
             ranTime = 0f;
             speed = minSpeed;

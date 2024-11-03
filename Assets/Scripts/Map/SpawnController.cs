@@ -27,7 +27,15 @@ public class SpawnController : MonoBehaviour
     [SerializeField]
     public float mapSpawnDistance;
 
-    private void Awake()
+    //private void Awake()
+    //{
+    //    for (int i = 0; i < mapSpawnCount; i++)
+    //    { // 처음 초기화 시 리스트에 넣으면서 생성
+    //        StartMapSpawn(i);
+    //    }
+    //}
+
+    private void Start()
     {
         for (int i = 0; i < mapSpawnCount; i++)
         { // 처음 초기화 시 리스트에 넣으면서 생성

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5480184890316243963}
   - component: {fileID: 8521464279687594082}
   m_Layer: 0
-  m_Name: BaseMap
+  m_Name: CoinFloor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36,6 +36,7 @@ Transform:
   - {fileID: 3518196594056709713}
   - {fileID: 889716044454823700}
   - {fileID: 5067023192620382742}
+  - {fileID: 2198016941607916246}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8521464279687594082
@@ -50,6 +51,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c01d412c5bd51be4baef40a8ea517756, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &7983656945725706486
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2198016941607916246}
+  m_Layer: 0
+  m_Name: PlayerReSpwanPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2198016941607916246
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7983656945725706486}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.5, y: 4, z: -28}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5480184890316243963}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &779626261928831299
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -372,7 +404,7 @@ PrefabInstance:
     - target: {fileID: 7483845940530761704, guid: f6cec2c1efa64574194e1eb19ebb3bcb,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7483845940530761704, guid: f6cec2c1efa64574194e1eb19ebb3bcb,
         type: 3}
@@ -446,7 +478,7 @@ PrefabInstance:
     - target: {fileID: 7483845940530761704, guid: 0566dbc9819d3aa4caea3391c558acab,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3
+      value: -7
       objectReference: {fileID: 0}
     - target: {fileID: 7483845940530761704, guid: 0566dbc9819d3aa4caea3391c558acab,
         type: 3}

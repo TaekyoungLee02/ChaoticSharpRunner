@@ -9,6 +9,8 @@ public class MapScroller : MonoBehaviour
     private SpawnController spawnController;
     private MapController mapController;
 
+    public Transform[] mapSpawnPosition;
+
     private void Awake()
     {
         spawnController = GetComponentInParent<SpawnController>();
@@ -30,6 +32,14 @@ public class MapScroller : MonoBehaviour
             transform.position =
                 spawnPositionObject.transform.position + new Vector3(0, 0, 30f);
         }
+    }
+
+    private void OnDisable()
+    {
+        // 비활성화시 맵 재배치
+        // 활성화시 재배치 된 오브젝트 활성화
+        // 맵은 초기화 위치만 생성하고 맵 객체들을 오브젝트
+        // 풀로 생성할까 고민중
     }
 
     private void Update()

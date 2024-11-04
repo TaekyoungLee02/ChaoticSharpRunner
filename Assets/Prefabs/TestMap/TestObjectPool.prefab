@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1150666432235979291
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5633529612980048842}
+  - component: {fileID: 7349342064437688725}
+  m_Layer: 0
+  m_Name: TestObjectPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5633529612980048842
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1150666432235979291}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.78903, y: -6.9197617, z: 40.646904}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7349342064437688725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1150666432235979291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6dd48cf5d7d41a44854be31c6ac77f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pools:
+  - tag: CoinMap
+    prefab: {fileID: 3443293322741268409, guid: a728d29186d790c4ab8fc14e9fe4f46f,
+      type: 3}
+    size: 7
+    spawnPosition: {fileID: 0}
+  - tag: BaseMap
+    prefab: {fileID: 3443293322741268409, guid: 7654b395db529cc47815718580c5bac3,
+      type: 3}
+    size: 7
+    spawnPosition: {fileID: 0}
+  - tag: errerMap
+    prefab: {fileID: 3443293322741268409, guid: 6aa5b003955d73744b13ffe8a8f43e4a,
+      type: 3}
+    size: 7
+    spawnPosition: {fileID: 0}

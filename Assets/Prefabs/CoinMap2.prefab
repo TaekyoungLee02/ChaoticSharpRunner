@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 475801615912190289}
   m_Layer: 0
-  m_Name: StraightCoinPosition3
+  m_Name: RightCoinPosition3
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -41,9 +41,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8190405939763730241}
   m_Layer: 0
-  m_Name: JumpCoinPosition5
+  m_Name: LeftCoinPosition5
   m_TagString: Untagged
-  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -72,7 +72,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3871413461393016366}
   m_Layer: 0
-  m_Name: StraightCoinPosition6
+  m_Name: RightCoinPosition6
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -103,7 +103,7 @@ GameObject:
   m_Component:
   - component: {fileID: 576522911825807661}
   m_Layer: 0
-  m_Name: StraightCoinPosition4
+  m_Name: RightCoinPosition4
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -134,7 +134,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6626306191828258920}
   m_Layer: 0
-  m_Name: StraightCoinPosition1
+  m_Name: RightCoinPosition1
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -218,19 +218,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c01d412c5bd51be4baef40a8ea517756, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectSpawnPosition:
-  - {fileID: 6626306191828258920}
-  - {fileID: 8299917466294055390}
-  - {fileID: 475801615912190289}
-  - {fileID: 576522911825807661}
-  - {fileID: 7481169044926236519}
+  coinSpawnPosition:
   - {fileID: 3871413461393016366}
+  - {fileID: 7481169044926236519}
+  - {fileID: 576522911825807661}
+  - {fileID: 475801615912190289}
+  - {fileID: 8299917466294055390}
+  - {fileID: 6626306191828258920}
   - {fileID: 8023276340344085572}
   - {fileID: 1857353125298693180}
   - {fileID: 870436294518349052}
   - {fileID: 5285001139985865990}
   - {fileID: 8190405939763730241}
   - {fileID: 3934977626225684278}
+  trapSpawnPosition: []
+  itemSpawnPosition: []
 --- !u!1 &4282706492678244502
 GameObject:
   m_ObjectHideFlags: 0
@@ -241,7 +243,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8299917466294055390}
   m_Layer: 0
-  m_Name: StraightCoinPosition2
+  m_Name: RightCoinPosition2
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -272,7 +274,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7481169044926236519}
   m_Layer: 0
-  m_Name: StraightCoinPosition5
+  m_Name: RightCoinPosition5
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -303,9 +305,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8023276340344085572}
   m_Layer: 0
-  m_Name: JumpCoinPosition1
+  m_Name: LeftCoinPosition1
   m_TagString: Untagged
-  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -334,9 +336,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1857353125298693180}
   m_Layer: 0
-  m_Name: JumpCoinPosition2
+  m_Name: LeftCoinPosition2
   m_TagString: Untagged
-  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -365,9 +367,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3934977626225684278}
   m_Layer: 0
-  m_Name: SecretCoinPosition1
+  m_Name: FrontCoinPosition1
   m_TagString: Untagged
-  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -396,9 +398,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5285001139985865990}
   m_Layer: 0
-  m_Name: JumpCoinPosition4
+  m_Name: LeftCoinPosition4
   m_TagString: Untagged
-  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -458,9 +460,9 @@ GameObject:
   m_Component:
   - component: {fileID: 870436294518349052}
   m_Layer: 0
-  m_Name: JumpCoinPosition3
+  m_Name: LeftCoinPosition3
   m_TagString: Untagged
-  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1

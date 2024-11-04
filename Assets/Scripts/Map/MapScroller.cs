@@ -9,7 +9,11 @@ public class MapScroller : MonoBehaviour
     private SpawnController spawnController;
     private MapController mapController;
     [SerializeField]
-    private Transform[] objectSpawnPosition;
+    private Transform[] coinSpawnPosition;
+    [SerializeField]
+    private Transform[] trapSpawnPosition;
+    [SerializeField]
+    private Transform[] itemSpawnPosition;
 
     private void Awake()
     {

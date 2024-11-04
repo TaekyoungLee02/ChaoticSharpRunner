@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7715003272277308221}
   m_Layer: 0
-  m_Name: StraightCoinPosition1
+  m_Name: FrontCoinPosition1
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -41,9 +41,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3918107363440055168}
   m_Layer: 0
-  m_Name: StraightCoinPosition6
+  m_Name: FrontCoinPosition6
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -62,6 +62,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5480184890316243963}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2407576047959186316
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3395879362879690091}
+  m_Layer: 0
+  m_Name: RightCoinPosition1
+  m_TagString: Untagged
+  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3395879362879690091
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2407576047959186316}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -4.5, y: 3, z: -2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5480184890316243963}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3443293322741268409
 GameObject:
   m_ObjectHideFlags: 0
@@ -75,7 +106,7 @@ GameObject:
   m_Layer: 0
   m_Name: CoinMap 1
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -96,17 +127,21 @@ Transform:
   - {fileID: 1996319915219972540}
   - {fileID: 889716044454823700}
   - {fileID: 5067023192620382742}
+  - {fileID: 1858793828052984824}
   - {fileID: 2198016941607916246}
   - {fileID: 3829285827146813678}
   - {fileID: 8922117994158069585}
-  - {fileID: 2672541297583924801}
+  - {fileID: 3395879362879690091}
   - {fileID: 3918107363440055168}
   - {fileID: 7007671670760040330}
   - {fileID: 3002895315761282798}
   - {fileID: 6510193891116287532}
   - {fileID: 5258095290403277884}
   - {fileID: 7715003272277308221}
-  - {fileID: 1858793828052984824}
+  - {fileID: 2672541297583924801}
+  - {fileID: 3814276755585744706}
+  - {fileID: 1364311017010295060}
+  - {fileID: 4987928613671625543}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8521464279687594082
@@ -121,7 +156,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c01d412c5bd51be4baef40a8ea517756, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectSpawnPosition: []
+  coinSpawnPosition:
+  - {fileID: 3395879362879690091}
+  - {fileID: 3918107363440055168}
+  - {fileID: 7007671670760040330}
+  - {fileID: 3002895315761282798}
+  - {fileID: 6510193891116287532}
+  - {fileID: 5258095290403277884}
+  - {fileID: 7715003272277308221}
+  - {fileID: 2672541297583924801}
+  - {fileID: 3814276755585744706}
+  - {fileID: 1364311017010295060}
+  - {fileID: 4987928613671625543}
+  trapSpawnPosition:
+  - {fileID: 8922117994158069585}
+  itemSpawnPosition: []
+--- !u!1 &3813679064102758598
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4987928613671625543}
+  m_Layer: 0
+  m_Name: LeftCoinPosition1
+  m_TagString: Untagged
+  m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4987928613671625543
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3813679064102758598}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 5.5, y: 5, z: -20}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5480184890316243963}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3865969884828795437
 GameObject:
   m_ObjectHideFlags: 0
@@ -132,9 +212,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3002895315761282798}
   m_Layer: 0
-  m_Name: StraightCoinPosition4
+  m_Name: FrontCoinPosition4
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -153,6 +233,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5480184890316243963}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4447328603269605044
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3814276755585744706}
+  m_Layer: 0
+  m_Name: LeftCoinPosition3
+  m_TagString: Untagged
+  m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3814276755585744706
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4447328603269605044}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 5.5, y: 7, z: -13}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5480184890316243963}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4462442278601778832
 GameObject:
   m_ObjectHideFlags: 0
@@ -163,9 +274,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5258095290403277884}
   m_Layer: 0
-  m_Name: StraightCoinPosition2
+  m_Name: FrontCoinPosition2
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -194,9 +305,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7007671670760040330}
   m_Layer: 0
-  m_Name: StraightCoinPosition5
+  m_Name: FrontCoinPosition5
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -225,9 +336,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2672541297583924801}
   m_Layer: 0
-  m_Name: StraightCoinPosition7
+  m_Name: LeftCoinPosition4
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -240,7 +351,7 @@ Transform:
   m_GameObject: {fileID: 6030833903821489421}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6, y: 3, z: 0}
+  m_LocalPosition: {x: 6, y: 3, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -256,9 +367,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6510193891116287532}
   m_Layer: 0
-  m_Name: StraightCoinPosition3
+  m_Name: FrontCoinPosition3
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -272,6 +383,37 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.5, y: 6, z: -12}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5480184890316243963}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7952466906039495165
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1364311017010295060}
+  m_Layer: 0
+  m_Name: LeftCoinPosition2
+  m_TagString: Untagged
+  m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1364311017010295060
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7952466906039495165}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 5.5, y: 6, z: -17}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -318,9 +460,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8922117994158069585}
   m_Layer: 0
-  m_Name: StraightTrapPosition1
+  m_Name: FrontTrapPosition1
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1

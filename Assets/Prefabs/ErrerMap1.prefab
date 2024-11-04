@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 5480184890316243963}
   - component: {fileID: 8521464279687594082}
   m_Layer: 0
-  m_Name: ErrerFloor
+  m_Name: ErrerMap1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -82,6 +82,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c01d412c5bd51be4baef40a8ea517756, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectSpawnPosition: []
 --- !u!1001 &779626261928831299
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -246,7 +247,7 @@ PrefabInstance:
     - target: {fileID: 7483845940530761704, guid: f6cec2c1efa64574194e1eb19ebb3bcb,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 7483845940530761704, guid: f6cec2c1efa64574194e1eb19ebb3bcb,
         type: 3}
@@ -404,7 +405,7 @@ PrefabInstance:
     - target: {fileID: 7483845940530761704, guid: 4baee5eda63213a469c5a3d406ff3bb1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7483845940530761704, guid: 4baee5eda63213a469c5a3d406ff3bb1,
         type: 3}
@@ -478,7 +479,7 @@ PrefabInstance:
     - target: {fileID: 7483845940530761704, guid: 0566dbc9819d3aa4caea3391c558acab,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2
+      value: -7
       objectReference: {fileID: 0}
     - target: {fileID: 7483845940530761704, guid: 0566dbc9819d3aa4caea3391c558acab,
         type: 3}

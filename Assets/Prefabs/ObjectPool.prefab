@@ -45,18 +45,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pools:
-  - tag: CoinMap
+  - tag: CoinMap1
+    prefab: {fileID: 3443293322741268409, guid: d27d84d115a96784fb35a7bcac730003,
+      type: 3}
+    size: 7
+    spawnPosition: {fileID: 0}
+  - tag: CoinMap2
     prefab: {fileID: 3443293322741268409, guid: a728d29186d790c4ab8fc14e9fe4f46f,
       type: 3}
     size: 7
     spawnPosition: {fileID: 0}
-  - tag: BaseMap
+  - tag: BaseMap1
+    prefab: {fileID: 3443293322741268409, guid: bbe0ecdae38fc914d93bd6e7ae0f61f1,
+      type: 3}
+    size: 7
+    spawnPosition: {fileID: 0}
+  - tag: BaseMap2
     prefab: {fileID: 3443293322741268409, guid: 7654b395db529cc47815718580c5bac3,
       type: 3}
     size: 7
     spawnPosition: {fileID: 0}
-  - tag: errerMap
+  - tag: errerMap1
     prefab: {fileID: 3443293322741268409, guid: 6aa5b003955d73744b13ffe8a8f43e4a,
+      type: 3}
+    size: 7
+    spawnPosition: {fileID: 0}
+  - tag: errerMap2
+    prefab: {fileID: 3443293322741268409, guid: de4fb2c4b4fc942498d546ba36d74a00,
       type: 3}
     size: 7
     spawnPosition: {fileID: 0}

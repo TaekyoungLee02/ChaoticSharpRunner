@@ -46,11 +46,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapNameArray:
-  - CoinMap
-  - BaseMap
-  - errerMap
+  - CoinMap1
+  - CoinMap2
+  - BaseMap1
+  - BaseMap2
+  - errerMap1
+  - errerMap2
   mapObjectArray: []
-  mapSpawnCount: 4
+  mapSpawnCount: 6
   mapSpawnDistance: 30
 --- !u!114 &7814116693616036394
 MonoBehaviour:
@@ -65,10 +68,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
-  ranTime: 0
-  accelerationCoolTime: 1
-  minSpeed: 0
   maxSpeed: 100
-  saveSpeed: 0
+  accelerationCoolTime: 5
   inPlayerDamage: 0
   inPlayeritem: 0

@@ -20,7 +20,7 @@ public enum ObstacleType
 public class SpawnController : MonoBehaviour
 {
     [SerializeField]
-    private string[] mapNameArray = { "CoinMap", "BaseMap", "errerMap" };
+    private string[] mapNameArray;
     public List<GameObject> mapObjectArray = new List<GameObject>();
 
     [SerializeField]

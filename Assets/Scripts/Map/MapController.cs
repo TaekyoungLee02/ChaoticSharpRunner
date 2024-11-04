@@ -11,7 +11,8 @@ public class MapController : MonoBehaviour
     private float saveSpeed;
 
     private float ranTime;
-    private float accelerationCoolTime;
+    
+    public float accelerationCoolTime;
 
     // TODO :: PlayerAbility
     public bool inPlayerDamage = false;
@@ -41,29 +42,28 @@ public class MapController : MonoBehaviour
         return speed;
     }
 
-    public void ResetSpeed()
+    private void ResetSpeed()
     {
-        if (inPlayeritem) // 조건 바꾸기
-        { // 아이템 효과가 활성화 상태라면
+        if (inPlayeritem && saveSpeed == 0)
+        { // 아이템 효과가 활성화 상태일 때 저장된 속도가 없다면
             saveSpeed = speed;
+            speed = minSpeed;
         }
 
         if (inPlayerDamage)
         { // 아이템 효과가 없을 때 데미지를 입는다면
             ranTime = 0f;
             saveSpeed = minSpeed;
-        }
-
-        if (speed <= minSpeed)
-        { // 속도 최소치
             speed = minSpeed;
         }
+
+        LimitSpeed();
     }
 
-    public void AccelerationSpeed()
+    private void AccelerationSpeed()
     {
         if (!inPlayeritem && saveSpeed != 0)
-        { // 아이템 효과가 없는데 저장된 속도가 존재한다면
+        { // 아이템 효과가 비활성화 상태일 때 저장된 속도가 있다면
             speed = saveSpeed;
             saveSpeed = 0;
             // 속도를 저장된 값으로 설정 후 초기화
@@ -76,7 +76,16 @@ public class MapController : MonoBehaviour
             // 가속 후 초기화
         }
 
-        if (speed >= maxSpeed)
+        LimitSpeed();
+    }
+
+    private void LimitSpeed()
+    {
+        if (speed <= minSpeed)
+        { // 속도 최소치
+            speed = minSpeed;
+        }
+        else if (speed >= maxSpeed)
         { // 속도 최대치
             speed = maxSpeed;
         }

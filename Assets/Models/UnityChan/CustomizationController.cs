@@ -8,7 +8,7 @@ public enum SlotLocation
 }
 
 
-public class UnityChanSlots : MonoBehaviour
+public class CustomizationController : MonoBehaviour
 {
     [SerializeField] private GameObject m_HeadSlot;
     [SerializeField] private GameObject m_BackSlot;
@@ -22,7 +22,7 @@ public class UnityChanSlots : MonoBehaviour
         m_SocketDic.Add(SlotLocation.Back, m_BackSlot);
     }
 
-    public void EquipItem(SlotLocation location, GameObject itemPrefab)
+    public void EquipAccessory(SlotLocation location, GameObject itemPrefab)
     {
         if (m_SocketDic.TryGetValue(location, out GameObject socket))
         {

@@ -4,7 +4,7 @@ public class CoinItem : ItemBase
 {
     private Transform playerTransform;
     private bool magnet;
-    private readonly float speed = 1f;
+    private readonly float speed = 3f;
 
     private void Start()
     {
@@ -13,6 +13,8 @@ public class CoinItem : ItemBase
 
     public override void Use(Player player)
     {
+        base.Use(player);
+
         ScoreManager.Instance.AddScore((int)itemValue);
     }
 

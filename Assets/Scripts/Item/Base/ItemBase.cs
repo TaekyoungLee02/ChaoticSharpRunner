@@ -18,7 +18,11 @@ public abstract class ItemBase : MonoBehaviour
         duration = so.duration;
     }
 
-    public abstract void Use(Player player); //Player 매개변수로 받음
+    //Player 매개변수로 받음
+    public virtual void Use(Player player)
+    {
+        ItemManager.Instance.ItemUse();
+    }
 
     private void OnCollisionEnter(Collision collision)
     {

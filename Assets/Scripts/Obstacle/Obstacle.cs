@@ -5,6 +5,11 @@ public class Obstacle : MonoBehaviour
     public GameObject scoreCollider;
     public int damage;
 
+    private void OnEnable()
+    {
+        scoreCollider.SetActive(true);
+    }
+
     public void DestroyObstacle()
     {
         gameObject.SetActive(false);

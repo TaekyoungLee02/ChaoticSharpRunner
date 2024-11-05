@@ -8,6 +8,7 @@ public class ObstacleScoreCollider : MonoBehaviour
     {
         if(collision.transform.CompareTag("Player"))
         {
+            ObstacleManager.Instance.ObstaclePassed();
             ScoreManager.Instance.AddScore(1);
         }
     }

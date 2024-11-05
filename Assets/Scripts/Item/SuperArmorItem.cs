@@ -6,6 +6,8 @@ public class SuperArmorItem : ItemBase
 {
     public override void Use(Player player)
     {
+        base.Use(player);
+
         player.stats.StartSuperArmor(duration);
     }
 }

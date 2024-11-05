@@ -84,4 +84,12 @@ public class EnvironmentManager : Singleton<EnvironmentManager>
             !lightObject.activeInHierarchy)
             lightObject.SetActive(true);
     }
+
+    public void InitializeEnvironmentData()
+    {
+        timeRate = 1.0f / fullDayLength;
+        time = startTime;
+        currentEnvironment = "Day";
+        newEnvironment = null;
+    }
 }

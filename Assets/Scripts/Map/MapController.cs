@@ -2,10 +2,9 @@ using UnityEngine;
 
 public class MapController : MonoBehaviour
 {
-    public float speed;
-    
+    private float speed;
     private float minSpeed;
-    public float maxSpeed;
+    private float maxSpeed;
     private float saveSpeed;
 
     private float ranTime;
@@ -18,8 +17,12 @@ public class MapController : MonoBehaviour
 
     private void Start()
     {
+        speed = 5f;
         minSpeed = speed;
-        
+        maxSpeed = 30f;
+        saveSpeed = 0f;
+        ranTime = 0f;
+
         // 이벤트 등록: 환경이 바뀔 때 UpdateObstacleBehavior 호출
         EnvironmentManager.Instance.OnEnvironmentChanged += UpdateMapBehavior;
 
@@ -93,5 +96,14 @@ public class MapController : MonoBehaviour
     private float LimitSpeed()
     {
         return speed = Mathf.Clamp(speed, minSpeed, maxSpeed);
+    }
+    public void InitializeMapData()
+    {
+        speed = 5f;
+        saveSpeed = 0f;
+        ranTime = 0f;
+        accelerationCoolTime = 5f;
+        inPlayerDamage = false;
+        inPlayeritem = false;
     }
 }

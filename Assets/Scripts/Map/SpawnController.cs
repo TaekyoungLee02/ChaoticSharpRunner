@@ -46,4 +46,13 @@ public class SpawnController : MonoBehaviour
 
         return outNewMap;
     }
+
+    public void InitializeMapPosition()
+    {
+        for (int i = 0; i < mapObjectArray.Count; i++)
+        {
+            mapObjectArray[i].transform.position =
+                new Vector3(0, 0, i * mapSpawnDistance);
+        }
+    }
 }

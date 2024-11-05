@@ -86,7 +86,7 @@ CapsuleCollider:
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0, y: 0.95, z: 0}
 --- !u!1 &4755950755449936372
 GameObject:
   m_ObjectHideFlags: 0
@@ -291,7 +291,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 120
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &7417709221203815007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -398,6 +398,54 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: b94e1b3c-040d-4990-93ab-7970070c83a5
     m_ActionName: Player/MoveRight[/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5177942746072013064}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnTogglePause
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: f5408b7b-879b-4460-ae11-7c4dc31d681b
+    m_ActionName: Player/Pause[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5177942746072013064}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnRestartGame
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 8af8f780-0e03-421b-b2d9-b4103eb46a18
+    m_ActionName: Player/RestartGame[/Keyboard/f2]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5177942746072013064}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnGoToMainMenu
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 6c41e0bd-a36d-41cf-a825-7bad0040426a
+    m_ActionName: Player/GoToMainMenu[/Keyboard/f3]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -435,8 +483,11 @@ MonoBehaviour:
   slideCollider: {fileID: 4368250036291360519}
   groundLayerMask:
     serializedVersion: 2
-    m_Bits: 64
-  groundCheckRadius: 0.01
+    m_Bits: 576
+  structureLayerMask:
+    serializedVersion: 2
+    m_Bits: 512
+  groundCheckRadius: 1
 --- !u!114 &2988547027513100558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -484,7 +535,7 @@ MonoBehaviour:
   _life: 0
   maxHealth: 100
   maxLife: 3
-  invincibilityDuration: 3
+  invincibilityDuration: 0
 --- !u!1 &7993412503474823617
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,14 +1,15 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class SlotSlider : MonoBehaviour
 {
-    [SerializeField] private UnityChanSlots m_SlotManager;
+    [SerializeField] private CustomizationController m_CustomizationController;
     [SerializeField] SlotLocation m_SlotLocation;
-    [SerializeField] List<GameObject> m_Prefabs;
+    [SerializeField] List<AccessoryDataSO> m_AccessoryDataList;
 
     private Slider m_Slider;
     private CustomizedDataSO m_CustomizedData;
@@ -17,7 +18,10 @@ public class SlotSlider : MonoBehaviour
     {
         m_Slider = GetComponent<Slider>();
         m_Slider.onValueChanged.AddListener(ChangeAccessory);
-        m_Slider.maxValue = m_Prefabs.Count - 1;
+
+        m_AccessoryDataList = AccessoryManager.GetListBySlot(m_SlotLocation);
+        m_Slider.maxValue = m_AccessoryDataList.Count;
+        m_AccessoryDataList.Insert(0, null);
 
         m_CustomizedData = Resources.Load<CustomizedDataSO>("Data/CustomizedData");
     }
@@ -25,31 +29,11 @@ public class SlotSlider : MonoBehaviour
     private void ChangeAccessory(float floatValue)
     {
         int value = (int)floatValue;
+        var data = m_AccessoryDataList[value];
 
-        if (m_Prefabs == null)
-        {
-            return;
-        }
-
-        if (value < 0 || value >= m_Prefabs.Count)
-        {
-            return;
-        }
-
-        switch (m_SlotLocation)
-        {
-        case SlotLocation.Head:
-            m_CustomizedData.headSlot = m_Prefabs[value];
-            break;
-
-        case SlotLocation.Back:
-            m_CustomizedData.backSlot = m_Prefabs[value];
-            break;
-
-        default:
-            break;
-        }
-
-        m_SlotManager.EquipItem(m_SlotLocation, m_Prefabs[value]);
+        if (data == null)
+            m_CustomizationController.EquipAccessory(m_SlotLocation, null);
+        else
+            m_CustomizationController.EquipAccessory(m_SlotLocation, data.prefab);
     }
 }

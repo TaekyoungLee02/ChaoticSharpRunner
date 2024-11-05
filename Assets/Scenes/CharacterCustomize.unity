@@ -1635,12 +1635,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ad24be159583f349938d258c6e38319, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SlotManager: {fileID: 7481445769941352712}
+  m_CustomizationController: {fileID: 7481445769941352712}
   m_SlotLocation: 0
-  m_Prefabs:
-  - {fileID: 0}
-  - {fileID: 2400852919446531146, guid: 797d140a26879bd4c925408fc10ccbd8, type: 3}
-  - {fileID: 8570439784330464525, guid: 3be08272b586f3e4dbddbc4c71badf0b, type: 3}
+  m_AccessoryDataList: []
 --- !u!1 &760105070
 GameObject:
   m_ObjectHideFlags: 0
@@ -4097,12 +4094,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ad24be159583f349938d258c6e38319, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SlotManager: {fileID: 7481445769941352712}
+  m_CustomizationController: {fileID: 7481445769941352712}
   m_SlotLocation: 1
-  m_Prefabs:
-  - {fileID: 0}
-  - {fileID: 3591502828644470895, guid: b2a94a4c648eb764d86a30037ce2cc19, type: 3}
-  - {fileID: 2101197854715308958, guid: f564b02e33a9b964bafb78f989a92603, type: 3}
+  m_AccessoryDataList: []
 --- !u!1 &2054382924
 GameObject:
   m_ObjectHideFlags: 0

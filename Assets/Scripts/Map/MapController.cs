@@ -2,23 +2,31 @@ using UnityEngine;
 
 public class MapController : MonoBehaviour
 {
-    public float speed;
-
+    [SerializeField]
+    private float speed;
     private float minSpeed;
-    public float maxSpeed;
+    private float maxSpeed;
     private float saveSpeed;
 
+    [SerializeField]
     private float ranTime;
-    
-    public float accelerationCoolTime;
+    [SerializeField]
+    private float accelerationCoolTime;
 
-    // TODO :: PlayerAbility
+    // TODO :: Player
     public bool inPlayerDamage = false;
     public bool inPlayeritem = false;
 
     private void Start()
     {
+        speed = 5f;
         minSpeed = speed;
+        maxSpeed = 30f;
+        saveSpeed = 0f;
+        ranTime = 0f;
+
+        // 이벤트 등록: 환경이 바뀔 때 UpdateObstacleBehavior 호출
+        EnvironmentManager.Instance.OnEnvironmentChanged += UpdateMapBehavior;
 
         //GameManager.Instance.player.ability.OnSlowDown += ResetSpeed;
         //GameManager.Instance.player.ability.OnRestoreSpeed += AccelerationSpeed;
@@ -32,12 +40,26 @@ public class MapController : MonoBehaviour
         }
     }
 
+    private void UpdateMapBehavior(string inEnvironment)
+    {
+        if (inEnvironment == "Night")
+        {
+            accelerationCoolTime = 3;
+            // 맵 가속도 쿨타임을 빠르게 변경
+        }
+        else if (inEnvironment == "Day")
+        {
+            accelerationCoolTime = 5;
+            // 낮에는 맵 가속도 쿨타임을 본래 수치로 변경
+        }
+    }
+
     public float MapSpeed()
     {
         ResetSpeed();
         AccelerationSpeed();
 
-        return speed;
+        return LimitSpeed();
     }
 
     private void ResetSpeed()
@@ -54,8 +76,6 @@ public class MapController : MonoBehaviour
             saveSpeed = minSpeed;
             speed = minSpeed;
         }
-
-        LimitSpeed();
     }
 
     private void AccelerationSpeed()
@@ -69,23 +89,23 @@ public class MapController : MonoBehaviour
 
         if (ranTime >= accelerationCoolTime)
         { // 가속 쿨타임을 넘었다면
-            speed += 1;
+            speed++;
             ranTime = 0f;
             // 가속 후 초기화
         }
-
-        LimitSpeed();
     }
 
-    private void LimitSpeed()
+    private float LimitSpeed()
     {
-        if (speed <= minSpeed)
-        { // 속도 최소치
-            speed = minSpeed;
-        }
-        else if (speed >= maxSpeed)
-        { // 속도 최대치
-            speed = maxSpeed;
-        }
+        return speed = Mathf.Clamp(speed, minSpeed, maxSpeed);
+    }
+    public void InitializeMapData()
+    {
+        speed = 5f;
+        saveSpeed = 0f;
+        ranTime = 0f;
+        accelerationCoolTime = 5f;
+        inPlayerDamage = false;
+        inPlayeritem = false;
     }
 }

@@ -5,22 +5,24 @@ using UnityEngine.InputSystem;
 
 public class PlayerAbility : MonoBehaviour
 {
-    public event Action<float, float> OnGaugeChanged;
+    public event Action<float, float> OnAbilityGaugeChanged;
     public event Action OnSlowDown;
     public event Action OnRestoreSpeed;
 
+    [SerializeField] private float currentGauge;
     [SerializeField] private float maxGauge;
+    public float MaxGauge => maxGauge;
+
     [SerializeField] private float gaugeRechargeRate;
     [SerializeField] private float gaugeDrainRate;
 
-    private float currentGauge;
     private bool isAbilityActive = false;
     private Coroutine drainCoroutine;
 
     void Start()
     {
         currentGauge = maxGauge;
-        UpdateGaugeUI();
+        UpdateAbilityGaugeUI();
     }
 
     void Update()
@@ -74,7 +76,7 @@ public class PlayerAbility : MonoBehaviour
         if (currentGauge < maxGauge)
         {
             currentGauge += gaugeRechargeRate * Time.deltaTime;
-            UpdateGaugeUI();
+            UpdateAbilityGaugeUI();
         }
     }
 
@@ -83,7 +85,7 @@ public class PlayerAbility : MonoBehaviour
         while (isAbilityActive && currentGauge > 0)
         {
             currentGauge -= gaugeDrainRate * Time.deltaTime;
-            UpdateGaugeUI();
+            UpdateAbilityGaugeUI();
 
             if (currentGauge <= 0)
             {
@@ -94,16 +96,16 @@ public class PlayerAbility : MonoBehaviour
         }
     }
 
-    private void UpdateGaugeUI()
+    private void UpdateAbilityGaugeUI()
     {
-        OnGaugeChanged?.Invoke(currentGauge, maxGauge);
+        OnAbilityGaugeChanged?.Invoke(currentGauge, maxGauge);
     }
 
     public void InitializeAbility()
     {
         isAbilityActive = false;
         currentGauge = maxGauge;
-        UpdateGaugeUI();
+        UpdateAbilityGaugeUI();
         OnRestoreSpeed?.Invoke();
 
         if (drainCoroutine != null)

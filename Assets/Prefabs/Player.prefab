@@ -237,9 +237,9 @@ GameObject:
   - component: {fileID: 7417709221203815007}
   - component: {fileID: 538809877782576523}
   - component: {fileID: 5177942746072013064}
-  - component: {fileID: 587615861267962601}
   - component: {fileID: 2988547027513100558}
   - component: {fileID: 7339626899708200115}
+  - component: {fileID: 2198751689597960927}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -351,7 +351,19 @@ MonoBehaviour:
     m_ActionId: b2962017-fc61-4ba2-895a-d06ba35b8ba0
     m_ActionName: Player/Slide[/Keyboard/ctrl]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2988547027513100558}
+        m_TargetAssemblyTypeName: PlayerAbility, Assembly-CSharp
+        m_MethodName: OnAbilityUse
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 42992529-13fe-49ed-97e2-a029e6dd9cf0
     m_ActionName: Player/Skil[/Keyboard/leftShift]
   - m_PersistentCalls:
@@ -386,22 +398,6 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: b94e1b3c-040d-4990-93ab-7970070c83a5
     m_ActionName: Player/MoveRight[/Keyboard/d]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5177942746072013064}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: OnMove
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 39fd9ff6-c3c7-4d11-81ef-693a3fe45962
-    m_ActionName: Player/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -441,23 +437,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   groundCheckRadius: 0.01
---- !u!114 &587615861267962601
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5369883222445606020}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44261f88dbdf1d74593102659961199d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 0
-  life: 0
-  maxHealth: 100
-  maxLife: 3
-  invincibilityDuration: 0
 --- !u!114 &2988547027513100558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -470,6 +449,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 302c678477073e942acfc43026959e86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentGauge: 0
   maxGauge: 100
   gaugeRechargeRate: 1
   gaugeDrainRate: 10
@@ -488,6 +468,23 @@ MonoBehaviour:
   cameraTransform: {fileID: 0}
   offset: {x: 0, y: 5, z: -10}
   followSpeed: 5
+--- !u!114 &2198751689597960927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5369883222445606020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb65c61eac5d54c46ad0a9fd06a502a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _health: 0
+  _life: 0
+  maxHealth: 100
+  maxLife: 3
+  invincibilityDuration: 3
 --- !u!1 &7993412503474823617
 GameObject:
   m_ObjectHideFlags: 0

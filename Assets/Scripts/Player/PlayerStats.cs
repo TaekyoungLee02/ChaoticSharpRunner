@@ -26,6 +26,9 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private int maxLife = 3;
     [SerializeField] private float invincibilityDuration = 3;
 
+    public int MaxHealth => maxHealth;
+    public int MaxLife => maxLife;
+
     public event Action<int> OnHealthChanged;
     public event Action<int> OnLifeChanged;
     public event Action OnPlayerDeath;

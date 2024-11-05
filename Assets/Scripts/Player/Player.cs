@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     public void InitializePlayer()
     {
         controller.InitializeMovement();
-        stats.InitializeHealth();
+        stats.InitializeStats();
         ability.InitializeAbility();
         ResetPosition();        
     }
@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
     public void ResetPlayer()
     {
         controller.InitializeMovement();
-        stats.ResetHealth();
+        stats.ResetStats();
         ability.InitializeAbility();
         ResetPosition();
     }
@@ -34,22 +34,5 @@ public class Player : MonoBehaviour
     private void ResetPosition()
     {
         transform.position = Vector3.zero;
-    }
-
-    //public void ApplyItemEffect(Item item)
-    //{
-    //    item.ApplyEffect(this);  // 아이템이 자신을 플레이어에 적용하도록 전달
-    //}
-
-    void OnEnable()
-    {
-        GameManager.Instance.OnGameReset += ResetPlayer;
-        GameManager.Instance.OnGameOver += InitializePlayer;
-    }
-
-    void OnDisable()
-    {
-        GameManager.Instance.OnGameReset -= ResetPlayer;
-        GameManager.Instance.OnGameOver -= InitializePlayer;
     }
 }

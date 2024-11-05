@@ -63,36 +63,34 @@ public class PlayerStats : MonoBehaviour
     {
         if (life > 0)
         {
-            life--;
-            ResetHealth();
-            OnLifeChanged?.Invoke(life);
-            StartInvincibility(invincibilityDuration);
+            GameManager.Instance.ResetGame();
         }
 
         else
         {
-            GameOver();
+            GameManager.Instance.GameOver();
+            OnPlayerDeath?.Invoke();
         }
     }
 
-    private void GameOver()
+    public void ResetStats()
     {
-        OnPlayerDeath?.Invoke();
-    }
-
-    public void ResetHealth()
-    {
+        life--;
         health = maxHealth;
         isInvincible = false;
+        isSuperArmor = false;
 
         OnHealthChanged?.Invoke(health);
+        OnLifeChanged?.Invoke(life);
+        StartInvincibility(invincibilityDuration);
     }
 
-    public void InitializeHealth()
+    public void InitializeStats()
     {
         health = maxHealth;
         life = maxLife;
         isInvincible = false;
+        isSuperArmor = false;
 
         OnHealthChanged?.Invoke(health);
         OnLifeChanged?.Invoke(life);

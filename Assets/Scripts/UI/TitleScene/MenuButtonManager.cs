@@ -6,6 +6,8 @@ public class MenuButtonManager : MonoBehaviour
 {
     [SerializeField] private Button[] buttons;
     [SerializeField] private string[] sceneNames;
+    [SerializeField] private Button initializeScoreButton;
+    [SerializeField] private GameObject scoreResetConfirmationPanel; // 확인 패널 참조
 
     private Button selectedButton;
 
@@ -13,11 +15,35 @@ public class MenuButtonManager : MonoBehaviour
     {
         DeselectAllButtons();
 
+        initializeScoreButton.onClick.AddListener(ShowScoreResetConfirmationPanel);
+
         for (int i = 0; i < buttons.Length; i++)
         {
             int index = i;
             buttons[i].onClick.AddListener(() => HandleButtonClick(buttons[index], sceneNames[index]));
         }
+
+        // 패널 초기화 상태
+        scoreResetConfirmationPanel.SetActive(false);
+    }
+
+    // 초기화 확인 패널을 표시
+    private void ShowScoreResetConfirmationPanel()
+    {
+        scoreResetConfirmationPanel.SetActive(true);
+    }
+
+    // 초기화 확인 패널에서 '예' 버튼을 클릭했을 때 실행
+    public void OnConfirmResetScore()
+    {
+        ScoreManager.Instance.ResetHighScore();
+        scoreResetConfirmationPanel.SetActive(false); // 패널 숨기기
+    }
+
+    // 초기화 확인 패널에서 '아니오' 버튼을 클릭했을 때 실행
+    public void OnCancelResetScore()
+    {
+        scoreResetConfirmationPanel.SetActive(false); // 패널 숨기기
     }
 
     private void HandleButtonClick(Button button, string sceneName)

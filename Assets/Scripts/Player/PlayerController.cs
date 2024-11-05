@@ -13,17 +13,18 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
     private bool isSliding = false;
     private int jumpCount = 0;
+    private Vector3 lastValidPosition;
 
     [SerializeField] private float fallMultiplier = 2.5f;
     [SerializeField] private float customGravity = -9.81f;
 
     private float originalColliderHeight;
     private Vector3 originalColliderCenter;
-
     private ObstacleCollisionProcessor collisionProcessor;
 
     [SerializeField] private CapsuleCollider slideCollider;
     [SerializeField] private LayerMask groundLayerMask;
+    [SerializeField] private LayerMask structureLayerMask;
     [SerializeField] private float groundCheckRadius;
 
     void Awake()
@@ -36,6 +37,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        lastValidPosition = transform.position;
+
         Vector3 targetPosition = transform.position;
         targetPosition.z = transform.position.z;
 
@@ -81,8 +84,7 @@ public class PlayerController : MonoBehaviour
 
             else if (desiredLane == 0)
             {
-                // 왼쪽 끝에서 왼쪽 이동 시도 시 데미지 처리
-                //collisionProcessor.TriggerHitObstacle();
+                GameManager.Instance.player.stats.TakeDamage(10);
             }
         }
     }
@@ -98,8 +100,7 @@ public class PlayerController : MonoBehaviour
 
             else if (desiredLane == 2)
             {
-                // 오른쪽 끝에서 오른쪽 이동 시도 시 데미지 처리
-                //collisionProcessor.TriggerHitObstacle();
+                GameManager.Instance.player.stats.TakeDamage(10);
             }
         }
     }
@@ -157,5 +158,36 @@ public class PlayerController : MonoBehaviour
 
         slideCollider.height = originalColliderHeight;
         slideCollider.center = originalColliderCenter;
+    }
+
+    public void OnTogglePause(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            GameManager.Instance.TogglePause();
+        }
+    }
+
+    public void OnRestartGame(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            GameManager.Instance.RestartGame();
+        }
+    }
+
+    public void OnGoToMainMenu(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            GameManager.Instance.GoToMainMenu();
+        }
+    }
+
+    public void OnCollisionEnter(Collision collision)
+    {
+        //현재 레인 위치를 저장하고 변수로
+
+
     }
 }

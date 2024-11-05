@@ -5,8 +5,10 @@ using UnityEngine.EventSystems;
 
 public class UIManager : Singleton<UIManager>
 {
-    [SerializeField] private GameObject[] uiRootPrefabs; // 여러 UIRoot 프리팹 참조
+    [SerializeField] private GameObject[] uiRootPrefabs;
+    [SerializeField] private GameObject[] pausePanelPrefab;
     private GameObject uiRootInstance;
+    private GameObject pausePanelInstance;
 
     private void Start()
     {
@@ -19,13 +21,18 @@ public class UIManager : Singleton<UIManager>
         }
     }
 
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= SceneLoad;
+    }
+
     void SceneLoad(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name == "InGameScene") // 인게임 씬에서 필요한 UI 생성
+        if (scene.name == "InGameScene")
         {
             InitializeUI(1); // InGame UI를 배열의 두 번째 프리팹으로 가정
         }
-        else if (scene.name == "TitleScene") // 타이틀 씬으로 돌아올 경우 타이틀 UI 생성
+        else if (scene.name == "TitleScene")
         {
             InitializeUI(0); // Title UI를 배열의 첫 번째 프리팹으로 가정
         }
@@ -35,12 +42,12 @@ public class UIManager : Singleton<UIManager>
     {
         if (uiRootInstance == null && uiRootPrefabs != null && prefabIndex >= 0 && prefabIndex < uiRootPrefabs.Length)
         {
-            // EventSystem 생성
+            // 항상 새로운 EventSystem 생성
             GameObject eventSystem = new GameObject("EventSystem");
             eventSystem.AddComponent<EventSystem>();
             eventSystem.AddComponent<StandaloneInputModule>();
 
-            // Canvas 생성
+            // 항상 새로운 Canvas 생성
             GameObject canvasObject = new GameObject("Canvas");
             Canvas canvas = canvasObject.AddComponent<Canvas>();
             canvas.renderMode = RenderMode.ScreenSpaceOverlay;
@@ -48,19 +55,33 @@ public class UIManager : Singleton<UIManager>
             // CanvasScaler 설정
             CanvasScaler canvasScaler = canvasObject.AddComponent<CanvasScaler>();
             canvasScaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
-            canvasScaler.referenceResolution = new Vector2(1920, 1080); // 기본 해상도 설정
+            canvasScaler.referenceResolution = new Vector2(1920, 1080);
             canvasScaler.screenMatchMode = CanvasScaler.ScreenMatchMode.MatchWidthOrHeight;
-            canvasScaler.matchWidthOrHeight = 0.5f; // 화면 비율에 맞게 조정
+            canvasScaler.matchWidthOrHeight = 0.5f;
 
             canvasObject.AddComponent<GraphicRaycaster>();
 
             // 선택된 UIRoot 프리팹을 캔버스 하위에 생성
             uiRootInstance = Instantiate(uiRootPrefabs[prefabIndex], canvas.transform);
+
+            if (pausePanelPrefab[prefabIndex] != null)
+            {
+                pausePanelInstance = Instantiate(pausePanelPrefab[prefabIndex], canvas.transform);
+                pausePanelInstance.SetActive(false);
+            }
         }
 
         // UI 요소 초기화
         var condition = uiRootInstance?.GetComponentInChildren<UICondition>();
         condition?.Initialize();
+    }
+
+    public void TogglePauseMenu(bool show)
+    {
+        if (pausePanelInstance != null)
+        {
+            pausePanelInstance.SetActive(show);
+        }
     }
 
     public void ResetUI()

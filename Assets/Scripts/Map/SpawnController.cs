@@ -6,11 +6,6 @@ public enum ObjectType
     Obstacle,
 }
 
-public enum ItemType
-{
-    
-}
-
 public enum ObstacleType
 {
 

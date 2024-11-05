@@ -14,14 +14,15 @@ public enum ObstacleType
 
 public class SpawnController : MonoBehaviour
 {
+    //public MapSpawnSetting mapSetting;
+
     [SerializeField]
     private string[] mapNameArray;
     public List<GameObject> mapObjectArray = new List<GameObject>();
 
     [SerializeField]
-    private int mapSpawnCount;
-    [SerializeField]
-    private float mapSpawnDistance;
+    private float mapSpawnDistance = 30;
+    private int mapSpawnCount = 6;
 
     private void Start()
     {
@@ -45,5 +46,14 @@ public class SpawnController : MonoBehaviour
         GameObject outNewMap = ObjectPool.Instance.SpawnFromPool(mapNameArray[randomMap]);
 
         return outNewMap;
+    }
+
+    public void InitializeMapPosition()
+    {
+        for (int i = 0; i < mapObjectArray.Count; i++)
+        {
+            mapObjectArray[i].transform.position =
+                new Vector3(0, 0, i * mapSpawnDistance);
+        }
     }
 }

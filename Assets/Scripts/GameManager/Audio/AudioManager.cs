@@ -46,10 +46,10 @@ public class AudioManager : Singleton<AudioManager>
     public void PlayBGMClip (AudioClipName name, float volume)
     {
         AudioClip clip = GetAudioClip(name);
-        PlayBackgroundMusic(clip, volume);
+        PlayBGMClip(clip, volume);
     }
 
-    public void PlayBackgroundMusic (AudioClip clip, float volume)
+    public void PlayBGMClip (AudioClip clip, float volume)
     {
         m_BgmAudioSource.Stop();
         m_BgmAudioSource.clip = clip;

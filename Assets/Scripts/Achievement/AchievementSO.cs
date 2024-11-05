@@ -1,18 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class AchievementSO : MonoBehaviour
+[CreateAssetMenu(fileName = "Achievement", menuName = "Achievement")]
+public class AchievementSO : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [Header("Basic Information")]
+    public string achievementName;
+    public string achievementDescription;
+    public AchievementType itemType;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [Header("Condition")]
+    public int achievementCondition;
+    public bool completed;
+}
+
+public enum AchievementType
+{
+    SCORE,
+    ITEM,
+    OBSTACLE
 }

@@ -67,8 +67,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27e20e6bead84bd4c9d3e051e69c9f5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
-  maxSpeed: 100
+  speed: 10
+  minSpeed: 0
+  maxSpeed: 50
   accelerationCoolTime: 5
   inPlayerDamage: 0
   inPlayeritem: 0

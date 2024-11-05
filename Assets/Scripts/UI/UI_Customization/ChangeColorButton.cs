@@ -3,19 +3,27 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class ChangeColorButton : MonoBehaviour {
-    [SerializeField] ColorPicker colorPicker;
+    [SerializeField] ColorPickerPanel colorPickerPanel;
     [SerializeField] Material[] materialColors;
+
+    private Button button;
+    private Image image;
 
     private int count;
     private Color[] colors;
-    private Button button;
 
     private void Awake() {
         button = GetComponent<Button>();
+        image = GetComponent<Image>();
+
         button.onClick.AddListener(OnButtonClicked);
 
         count = materialColors.Length;
         colors = new Color[count];
+
+        if (count > 0) {
+            image.color = materialColors[0].color;
+        }
     }
 
     private void OnButtonClicked() {
@@ -23,16 +31,16 @@ public class ChangeColorButton : MonoBehaviour {
             colors[i] = materialColors[i].color;
         }
 
-        colorPicker.gameObject.SetActive(true);
-        colorPicker.ColorSelect += OnColorSelected;
-        colorPicker.ColorPreview += OnColorPreview;
-        colorPicker.Close += OnClose;
+        colorPickerPanel.gameObject.SetActive(true);
+        colorPickerPanel.ColorSelect += OnColorSelected;
+        colorPickerPanel.ColorPicker.ColorPreview += OnColorPreview;
+        colorPickerPanel.Close += OnClose;
     }
 
     private void OnClose() {
-        colorPicker.ColorSelect -= OnColorSelected;
-        colorPicker.ColorPreview -= OnColorPreview;
-        colorPicker.Close -= OnClose;
+        colorPickerPanel.ColorSelect -= OnColorSelected;
+        colorPickerPanel.ColorPicker.ColorPreview -= OnColorPreview;
+        colorPickerPanel.Close -= OnClose;
 
         for (int i = 0; i < count; i++) {
             materialColors[i].color = colors[i];
@@ -46,6 +54,7 @@ public class ChangeColorButton : MonoBehaviour {
     }
 
     private void OnColorSelected(Color color) {
+        image.color = color;
         for (int i = 0; i < count; i++) {
             colors[i] = color;
         }

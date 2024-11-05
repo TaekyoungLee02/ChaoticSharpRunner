@@ -10,6 +10,7 @@ public class ObjectPool : Singleton<ObjectPool>
         public string tag;
         public GameObject prefab;
         public int size;
+        public Transform spawnPosition;
     }
 
     public List<Pool> pools;
@@ -25,7 +26,7 @@ public class ObjectPool : Singleton<ObjectPool>
             Queue<GameObject> objectPool = new Queue<GameObject>();
             for (int i = 0; i < pool.size; i++)
             {
-                GameObject newObject = Instantiate(pool.prefab, transform);
+                GameObject newObject = Instantiate(pool.prefab, pool.spawnPosition);
                 newObject.SetActive(false);
                 objectPool.Enqueue(newObject);
             }

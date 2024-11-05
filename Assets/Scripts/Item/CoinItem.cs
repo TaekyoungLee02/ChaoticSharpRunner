@@ -2,8 +2,14 @@ using UnityEngine;
 
 public class CoinItem : ItemBase
 {
-
+    private Transform playerTransform;
     private bool magnet;
+    private readonly float speed = 1f;
+
+    private void Start()
+    {
+        playerTransform = GameManager.Instance.player.transform;
+    }
 
     public override void Use(Player player)
     {
@@ -19,7 +25,7 @@ public class CoinItem : ItemBase
     {
         if(magnet)
         {
-            //플레이어 쪽으로 다가가기
+            transform.position = Vector3.Lerp(transform.position, playerTransform.position, speed * Time.deltaTime);
         }
     }
 }

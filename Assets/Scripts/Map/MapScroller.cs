@@ -15,10 +15,13 @@ public class MapScroller : MonoBehaviour
     [SerializeField]
     private Transform[] itemSpawnPosition;
 
+    Rigidbody rigidbody;
+
     private void Awake()
     {
         spawnController = GetComponentInParent<SpawnController>();
         mapController = GetComponentInParent<MapController>();
+        rigidbody = GetComponent<Rigidbody>();
     }
 
     private void Start()
@@ -63,8 +66,11 @@ public class MapScroller : MonoBehaviour
 
     private void MapMovement()
     {
+        //Vector3 dis = targetPosition - transform.position;
         transform.position = Vector3.MoveTowards
             (transform.position, targetPosition, mapController.
             MapSpeed() * Time.fixedDeltaTime);
+        //rigidbody.velocity = dis.normalized * mapController.MapSpeed() 
+        //    * Time.fixedDeltaTime;
     }
 }

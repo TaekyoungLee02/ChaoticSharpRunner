@@ -20,6 +20,7 @@ public class PlayerStats : MonoBehaviour
     }
 
     public bool isInvincible { get; private set; }
+    public bool isSuperArmor { get; private set; }
 
     [SerializeField] private int maxHealth = 100;
     [SerializeField] private int maxLife = 3;
@@ -107,5 +108,20 @@ public class PlayerStats : MonoBehaviour
         isInvincible = true;
         yield return new WaitForSeconds(duration);
         isInvincible = false;
+    }
+
+    public void StartSuperArmor(float duration)
+    {
+        if (!isSuperArmor)
+        {
+            StartCoroutine(SuperArmorCoroutine(duration));
+        }
+    }
+
+    private IEnumerator SuperArmorCoroutine(float duration)
+    {
+        isSuperArmor = true;
+        yield return new WaitForSeconds(duration);
+        isSuperArmor = false;
     }
 }

@@ -23,7 +23,7 @@ public class MapScroller : MonoBehaviour
 
     private void Start()
     {
-        targetPosition = new Vector3(0, 0, 0);
+        targetPosition = new Vector3(0, 0, -30f);
     }
 
     private void OnEnable()

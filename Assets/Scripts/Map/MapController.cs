@@ -2,16 +2,18 @@ using UnityEngine;
 
 public class MapController : MonoBehaviour
 {
+    [SerializeField]
     private float speed;
     private float minSpeed;
     private float maxSpeed;
     private float saveSpeed;
 
+    [SerializeField]
     private float ranTime;
-    
-    public float accelerationCoolTime;
+    [SerializeField]
+    private float accelerationCoolTime;
 
-    // TODO :: PlayerAbility
+    // TODO :: Player
     public bool inPlayerDamage = false;
     public bool inPlayeritem = false;
 

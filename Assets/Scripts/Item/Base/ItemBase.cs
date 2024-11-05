@@ -4,11 +4,11 @@ using UnityEngine;
 
 public abstract class ItemBase : MonoBehaviour
 {
-    private string itemName;
-    private string itemDescription;
+    [SerializeField] private string itemName;
+    [SerializeField] private string itemDescription;
 
-    protected float itemValue;
-    protected float duration;
+    [SerializeField] protected float itemValue;
+    [SerializeField] protected float duration;
 
     public virtual void Init(ItemSO so)
     {
@@ -25,7 +25,7 @@ public abstract class ItemBase : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             Use(collision.gameObject.GetComponent<Player>());
-            // 풀로 돌려놓기
+            gameObject.SetActive(false);
         }
     }
 }

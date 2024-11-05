@@ -9,8 +9,7 @@ public class MagnetItem : ItemBase
 
         // 플레이어 반경으로 감지해서 코인이 있으면 그 코인이 플레이어 쪽으로 다가가게 함.
 
-
-
+        player.GetComponent<PlayerCoroutineReciever>().StartCoroutine(MagnetCoroutine());
     }
 
     private IEnumerator MagnetCoroutine()
@@ -21,11 +20,14 @@ public class MagnetItem : ItemBase
         {
             magnetDuration += Time.deltaTime;
 
-            var coins = Physics.OverlapSphere(transform.position, itemValue, LayerMask.NameToLayer("Coin"));
+            var coins = Physics.OverlapSphere(transform.position, itemValue, 1 << LayerMask.NameToLayer("Coin"));
 
-            foreach (var coin in coins)
+            if (coins != null)
             {
-                coin.GetComponent<CoinItem>().EnableMagnet();
+                foreach (var coin in coins)
+                {
+                    coin.GetComponent<CoinItem>().EnableMagnet();
+                }
             }
 
             yield return null;

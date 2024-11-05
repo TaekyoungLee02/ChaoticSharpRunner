@@ -3,6 +3,7 @@ using UnityEngine;
 public class Obstacle : MonoBehaviour
 {
     public GameObject scoreCollider;
+    public int damage;
 
     public void DestroyObstacle()
     {
@@ -13,13 +14,19 @@ public class Obstacle : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            if(true) // 슈퍼아머일 경우
+            var player = collision.gameObject.GetComponent<Player>();
+
+            if(player.stats.isInvincible) return;
+
+            if(player.stats.isSuperArmor) // 슈퍼아머일 경우
             {
-                gameObject.SetActive(false);
+                DestroyObstacle();
             }
             else
             {
-                // 플레이어와 충돌
+                player.stats.TakeDamage(damage);
+
+                scoreCollider.SetActive(false);
             }
         }
     }

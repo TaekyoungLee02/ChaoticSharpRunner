@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -10,14 +11,21 @@ public class GameManager : Singleton<GameManager>
 
     void Start()
     {
-        InitializeGame();
-        player.stats.OnPlayerDeath += EndGame;
+        SceneManager.sceneLoaded += SceneLoad;
+    }
+
+    void SceneLoad(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "InGameScene")
+        {
+            InitializeGame();
+            player.stats.OnPlayerDeath += EndGame;
+        }
     }
 
     private void InitializeGame()
     {
         player.InitializePlayer();
-        //UI
         //맵
         //아이템효과
     }
@@ -25,6 +33,7 @@ public class GameManager : Singleton<GameManager>
     public void ResetGame()
     {
         player.ResetPlayer();
+
         OnGameReset?.Invoke();
     }
 

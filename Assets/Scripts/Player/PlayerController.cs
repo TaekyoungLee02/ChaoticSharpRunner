@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 5f;
     public float jumpForce = 50f;
     public float slideDuration = 0.5f;
-    private const float LANE_DISTANCE = 3.0f; // 레인 간의 거리
+    private const float LANE_DISTANCE = 5.0f; // 레인 간의 거리
 
     private int desiredLane = 1; // 0 = Left, 1 = Middle, 2 = Right
     private Rigidbody rb;

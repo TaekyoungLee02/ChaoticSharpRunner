@@ -40,12 +40,12 @@ public class MapController : MonoBehaviour
         if (inEnvironment == "Night")
         {
             accelerationCoolTime = 3;
-            // 맵 가속도 수치를 빠르게 변경
+            // 맵 가속도 쿨타임을 빠르게 변경
         }
         else if (inEnvironment == "Day")
         {
             accelerationCoolTime = 5;
-            // 낮에는 맵 가속도를 본래 수치로 변경
+            // 낮에는 맵 가속도 쿨타임을 본래 수치로 변경
         }
     }
 

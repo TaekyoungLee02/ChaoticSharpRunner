@@ -68,8 +68,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  minSpeed: 0
-  maxSpeed: 50
+  maxSpeed: 30
   accelerationCoolTime: 5
   inPlayerDamage: 0
   inPlayeritem: 0

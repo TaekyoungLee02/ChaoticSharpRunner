@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 726718433551673865}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.2026083, y: 24.566269, z: -7.058764}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -46,8 +46,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a654662b31eba743a3663fb5dfdcae8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentEnvironment: 
-  newEnvironment: 
   time: 0
   fullDayLength: 30
   startTime: 0.4
@@ -119,10 +117,10 @@ MonoBehaviour:
   moon: {fileID: 1102626665344106051}
   moonColor:
     serializedVersion: 2
-    key0: {r: 0, g: 0.25210875, b: 0.9433962, a: 1}
-    key1: {r: 0, g: 0, b: 0, a: 1}
-    key2: {r: 0, g: 0, b: 0, a: 0}
-    key3: {r: 0, g: 0.2509804, b: 0.9450981, a: 0}
+    key0: {r: 0.21333215, g: 0.41221866, b: 0.9622642, a: 1}
+    key1: {r: 0, g: 0.08267439, b: 0.31132078, a: 1}
+    key2: {r: 0, g: 0.08235294, b: 0.30980393, a: 0}
+    key3: {r: 0.21176472, g: 0.41176474, b: 0.9607844, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
     key5: {r: 0, g: 0, b: 0, a: 0}
     key6: {r: 0, g: 0, b: 0, a: 0}
@@ -316,7 +314,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 0.13333334, g: 0.10196079, b: 0.9176471, a: 1}
+  m_Color: {r: 0.059407253, g: 0.46879235, b: 0.8396226, a: 1}
   m_Intensity: 0.2
   m_Range: 10
   m_SpotAngle: 30

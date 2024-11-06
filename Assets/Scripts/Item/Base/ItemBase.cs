@@ -24,11 +24,11 @@ public abstract class ItemBase : MonoBehaviour
         ItemManager.Instance.ItemUse();
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player"))
         {
-            Use(collision.gameObject.GetComponent<Player>());
+            Use(other.gameObject.GetComponentInParent<Player>());
             gameObject.SetActive(false);
         }
     }

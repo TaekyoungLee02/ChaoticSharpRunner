@@ -11,7 +11,6 @@ public class MagnetItem : ItemBase
 
         AudioManager.Instance.PlaySoundFXClip(AudioClipName.Sfx_09, transform.position, 0.5f);
 
-
         base.Use(player);
         player.GetComponent<PlayerCoroutineReciever>().StopCoroutine();
         player.GetComponent<PlayerCoroutineReciever>().StartCoroutine(MagnetCoroutine(player));

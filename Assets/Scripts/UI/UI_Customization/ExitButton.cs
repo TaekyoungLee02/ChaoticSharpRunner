@@ -15,5 +15,6 @@ public class ExitButton : MonoBehaviour {
 
     private void ButtonClickHandler () {
         SceneManager.LoadScene("TitleScene");
+        AudioManager.Instance.StopBackgroundMusic();
     }
 }

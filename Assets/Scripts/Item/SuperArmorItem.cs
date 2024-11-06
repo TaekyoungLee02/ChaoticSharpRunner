@@ -8,6 +8,9 @@ public class SuperArmorItem : ItemBase
     {
         base.Use(player);
 
+        AudioManager.Instance.PlaySoundFXClip(AudioClipName.Sfx_26, transform.position, 0.5f);
+        AudioManager.Instance.PlaySoundFXClip(AudioClipName.UnityChan_Soret, transform.position, 0.5f);
+
         player.stats.StartSuperArmor(duration);
     }
 }

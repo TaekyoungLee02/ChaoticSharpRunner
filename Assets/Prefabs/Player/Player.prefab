@@ -224,6 +224,72 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!1 &5233534048927879020
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6032330871110867529}
+  - component: {fileID: 3299383100251433514}
+  - component: {fileID: 2647617965706722497}
+  m_Layer: 3
+  m_Name: SideChecker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6032330871110867529
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5233534048927879020}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5171618503682157044}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &3299383100251433514
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5233534048927879020}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.5, y: 0.1, z: 1.5}
+  m_Center: {x: 0, y: 1.5, z: 0}
+--- !u!114 &2647617965706722497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5233534048927879020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b19acff50915a54eb514c323f517ee7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5369883222445606020
 GameObject:
   m_ObjectHideFlags: 0
@@ -264,6 +330,7 @@ Transform:
   - {fileID: 9065903921122252440}
   - {fileID: 7615838928242382073}
   - {fileID: 8599909646362661687}
+  - {fileID: 6032330871110867529}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &1616546568526447015
@@ -477,7 +544,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 20
-  jumpForce: 200
+  jumpForce: 250
   slideDuration: 1
   fallMultiplier: 1.25
   customGravity: -30
@@ -489,6 +556,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   groundCheckRadius: 1
+  sideCollisionCheckCollider: {fileID: 0}
 --- !u!114 &2988547027513100558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -503,7 +571,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentGauge: 0
   maxGauge: 100
-  gaugeRechargeRate: 1
+  gaugeRechargeRate: 3
   gaugeDrainRate: 10
 --- !u!114 &7339626899708200115
 MonoBehaviour:
@@ -536,7 +604,7 @@ MonoBehaviour:
   _life: 0
   maxHealth: 100
   maxLife: 3
-  invincibilityDuration: 0
+  invincibilityDuration: 2
 --- !u!114 &5959422970253199432
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,6 +6,9 @@ public class HealItem : ItemBase
     {
         base.Use(player);
 
+        AudioManager.Instance.PlaySoundFXClip(AudioClipName.Sfx_15, transform.position, 0.5f);
+
+
         player.stats.Heal((int)itemValue);
     }
 }

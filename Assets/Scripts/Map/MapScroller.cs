@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using UnityEngine;
 
 public class MapScroller : MonoBehaviour
@@ -63,6 +64,7 @@ public class MapScroller : MonoBehaviour
         foreach(var obj in mapAttachedObjects)
         {
             obj.SetParent(null);
+            obj.transform.position = new(0, -100, 0);
             obj.gameObject.SetActive(false);
         }
 

@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.Instance.IsPaused) return;
+        if (GameManager.Instance.isPaused) return;
 
         lastValidPosition = transform.position;
 
@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (GameManager.Instance.IsPaused) return;
+        if (GameManager.Instance.isPaused) return;
 
         if (rb.velocity.y < 0)
         {
@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnMoveLeft(InputAction.CallbackContext context)
     {
-        if (GameManager.Instance.IsPaused || context.phase != InputActionPhase.Performed) return;
+        if (GameManager.Instance.isPaused || context.phase != InputActionPhase.Performed) return;
         {
             if (desiredLane > 0)
             {
@@ -95,7 +95,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnMoveRight(InputAction.CallbackContext context)
     {
-        if (GameManager.Instance.IsPaused || context.phase != InputActionPhase.Performed) return;
+        if (GameManager.Instance.isPaused || context.phase != InputActionPhase.Performed) return;
         {
             if (desiredLane < 2)
             {
@@ -111,7 +111,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (GameManager.Instance.IsPaused || context.phase != InputActionPhase.Started) return;
+        if (GameManager.Instance.isPaused || context.phase != InputActionPhase.Started) return;
 
         if (IsGrounded() || jumpCount < 2)
         {
@@ -123,7 +123,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnSlide(InputAction.CallbackContext context)
     {
-        if (GameManager.Instance.IsPaused || !context.performed || !IsGrounded() || isSliding) return;
+        if (GameManager.Instance.isPaused || !context.performed || !IsGrounded() || isSliding) return;
         {
             StartCoroutine(Slide());
         }

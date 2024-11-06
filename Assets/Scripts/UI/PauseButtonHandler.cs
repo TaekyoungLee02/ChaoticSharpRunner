@@ -8,7 +8,6 @@ public class PauseButtonHandler : MonoBehaviour
     public void OnClickPauseButton()
     {
         GameManager.Instance.TogglePause();
-        Debug.Log("けいしかいしぉ");
     }
 
     void Start()

@@ -26,7 +26,7 @@ public class MapScroller : MonoBehaviour
 
     private void Start()
     {
-        targetPosition = new Vector3(0, 0, -30f);
+        targetPosition = new Vector3(0, -1, -30f);
     }
 
     private void OnEnable()
@@ -37,7 +37,7 @@ public class MapScroller : MonoBehaviour
                 [spawnController.mapObjectArray.Count - 1];
 
             transform.position =
-                spawnPositionObject.transform.position + new Vector3(0, 0, 30f);
+                spawnPositionObject.transform.position + new Vector3(0, -1, 30f);
         }
     }
 

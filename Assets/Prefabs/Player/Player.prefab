@@ -544,7 +544,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 20
-  jumpForce: 250
+  jumpForce: 300
   slideDuration: 1
   fallMultiplier: 1.25
   customGravity: -30
@@ -555,7 +555,7 @@ MonoBehaviour:
   structureLayerMask:
     serializedVersion: 2
     m_Bits: 512
-  groundCheckRadius: 1
+  groundCheckRadius: 0.5
   sideCollisionCheckCollider: {fileID: 0}
 --- !u!114 &2988547027513100558
 MonoBehaviour:

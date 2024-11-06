@@ -23,7 +23,7 @@ public class MapController : MonoBehaviour
         GameManager.Instance.OnGameRestart += InitializeMapData;
         GameManager.Instance.OnGameStart += InitializeMapData;
 
-        speed = 5f;
+        speed = 0f;
         minSpeed = speed;
         maxSpeed = 30f;
         saveSpeed = 0f;
@@ -56,6 +56,17 @@ public class MapController : MonoBehaviour
             accelerationCoolTime = 5;
             // 낮에는 맵 가속도 쿨타임을 본래 수치로 변경
         }
+    }
+
+    public float StartSpeed()
+    {
+        speed = 5f;
+        minSpeed = speed;
+        maxSpeed = 30f;
+        saveSpeed = 0f;
+        ranTime = 0f;
+
+        return speed;
     }
 
     public float MapSpeed()
@@ -103,6 +114,7 @@ public class MapController : MonoBehaviour
     {
         return speed = Mathf.Clamp(speed, minSpeed, maxSpeed);
     }
+
     public void InitializeMapData()
     {
         speed = 5f;

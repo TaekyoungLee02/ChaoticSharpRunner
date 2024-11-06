@@ -37,7 +37,7 @@ public class SpawnController : MonoBehaviour
     {
         GameObject newMapObject = GetMapObject();
         newMapObject.transform.position =
-            new Vector3(0, 0, inSpawnCount * mapSpawnDistance);
+            new Vector3(0, -1, inSpawnCount * mapSpawnDistance);
         mapObjectArray.Add(newMapObject);
     }
 
@@ -45,7 +45,6 @@ public class SpawnController : MonoBehaviour
     { // 오브젝트 랜덤 생성
         int randomMap = Random.Range(0, mapNameArray.Length);
         GameObject outNewMap = ObjectPool.Instance.SpawnFromPool(mapNameArray[randomMap]);
-        Debug.Log(outNewMap);
 
         return outNewMap;
     }
@@ -55,7 +54,7 @@ public class SpawnController : MonoBehaviour
         for (int i = 0; i < mapObjectArray.Count; i++)
         {
             mapObjectArray[i].transform.position =
-                new Vector3(0, 0, i * mapSpawnDistance);
+                new Vector3(0, -1, i * mapSpawnDistance);
         }
     }
 }

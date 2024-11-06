@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 672800976427933018}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 932.067, y: 753.2879, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b63fad89587ff1142888c2b9b24d11f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 5369883222445606020, guid: a34096b64cd75e045812bbdff68fdeca,
+  playerPrefab: {fileID: 5369883222445606020, guid: 5215643395a577d409302c5590fd4f7f,
     type: 3}
   player: {fileID: 0}
+  isPaused: 0

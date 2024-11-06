@@ -136,6 +136,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: MapObjectGroup
       objectReference: {fileID: 0}
+    - target: {fileID: 7814116693616036394, guid: 7ce6834e23345fb4e85ee116235a0ccb,
+        type: 3}
+      propertyPath: speed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7814116693616036394, guid: 7ce6834e23345fb4e85ee116235a0ccb,
+        type: 3}
+      propertyPath: accelerationCoolTime
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 8427180085478130127, guid: 7ce6834e23345fb4e85ee116235a0ccb,
         type: 3}
       propertyPath: m_LocalPosition.x

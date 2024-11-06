@@ -1,44 +1,110 @@
 fileFormatVersion: 2
 guid: f19da9b2c54351447bbac56503623250
 ModelImporter:
-  serializedVersion: 23
-  fileIDToRecycleName:
-    100000: borracha_low_lod03
-    100002: plastic_low_lod03
-    100004: //RootNode
-    100006: traffic_barrel_lod03
-    100008: traffic_barrel_rubber_lod03
-    100010: Barrel_lod03
-    100012: Barrel_rubber_lod03
-    400000: borracha_low_lod03
-    400002: plastic_low_lod03
-    400004: //RootNode
-    400006: traffic_barrel_lod03
-    400008: traffic_barrel_rubber_lod03
-    400010: Barrel_lod03
-    400012: Barrel_rubber_lod03
-    2100000: No Name
-    2300000: borracha_low_lod03
-    2300002: plastic_low_lod03
-    2300004: traffic_barrel_lod03
-    2300006: traffic_barrel_rubber_lod03
-    2300008: Barrel_lod03
-    2300010: Barrel_rubber_lod03
-    3300000: borracha_low_lod03
-    3300002: plastic_low_lod03
-    3300004: traffic_barrel_lod03
-    3300006: traffic_barrel_rubber_lod03
-    3300008: Barrel_lod03
-    3300010: Barrel_rubber_lod03
-    4300000: borracha_low_lod03
-    4300002: plastic_low_lod03
-    4300004: traffic_barrel_rubber_lod03
-    4300006: traffic_barrel_lod03
-    4300008: Barrel_lod03
-    4300010: Barrel_rubber_lod03
+  serializedVersion: 22200
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: borracha_low_lod03
+  - first:
+      1: 100002
+    second: plastic_low_lod03
+  - first:
+      1: 100004
+    second: //RootNode
+  - first:
+      1: 100006
+    second: traffic_barrel_lod03
+  - first:
+      1: 100008
+    second: traffic_barrel_rubber_lod03
+  - first:
+      1: 100010
+    second: Barrel_lod03
+  - first:
+      1: 100012
+    second: Barrel_rubber_lod03
+  - first:
+      4: 400000
+    second: borracha_low_lod03
+  - first:
+      4: 400002
+    second: plastic_low_lod03
+  - first:
+      4: 400004
+    second: //RootNode
+  - first:
+      4: 400006
+    second: traffic_barrel_lod03
+  - first:
+      4: 400008
+    second: traffic_barrel_rubber_lod03
+  - first:
+      4: 400010
+    second: Barrel_lod03
+  - first:
+      4: 400012
+    second: Barrel_rubber_lod03
+  - first:
+      21: 2100000
+    second: No Name
+  - first:
+      23: 2300000
+    second: borracha_low_lod03
+  - first:
+      23: 2300002
+    second: plastic_low_lod03
+  - first:
+      23: 2300004
+    second: traffic_barrel_lod03
+  - first:
+      23: 2300006
+    second: traffic_barrel_rubber_lod03
+  - first:
+      23: 2300008
+    second: Barrel_lod03
+  - first:
+      23: 2300010
+    second: Barrel_rubber_lod03
+  - first:
+      33: 3300000
+    second: borracha_low_lod03
+  - first:
+      33: 3300002
+    second: plastic_low_lod03
+  - first:
+      33: 3300004
+    second: traffic_barrel_lod03
+  - first:
+      33: 3300006
+    second: traffic_barrel_rubber_lod03
+  - first:
+      33: 3300008
+    second: Barrel_lod03
+  - first:
+      33: 3300010
+    second: Barrel_rubber_lod03
+  - first:
+      43: 4300000
+    second: borracha_low_lod03
+  - first:
+      43: 4300002
+    second: plastic_low_lod03
+  - first:
+      43: 4300004
+    second: traffic_barrel_rubber_lod03
+  - first:
+      43: 4300006
+    second: traffic_barrel_lod03
+  - first:
+      43: 4300008
+    second: Barrel_lod03
+  - first:
+      43: 4300010
+    second: Barrel_rubber_lod03
   externalObjects: {}
   materials:
-    importMaterials: 0
+    materialImportMode: 0
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -47,6 +113,7 @@ ModelImporter:
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
     motionNodeName: 
     rigImportErrors: 
     rigImportWarnings: 
@@ -67,29 +134,40 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 3
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 0
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
     importVisibility: 0
     importBlendShapes: 0
     importCameras: 0
     importLights: 0
+    nodeNameCollisionStrategy: 0
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 0
+    bakeAxisConversion: 0
     preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 1
-    hasPreviousCalculatedGlobalScale: 0
+    strictVertexDataChecks: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -98,10 +176,10 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 0
-  copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -111,13 +189,19 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 0.03
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 0
   humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
+  importBlendShapeDeformPercent: 0
+  remapMaterialsIfMaterialImportModeIsNone: 1
   additionalBone: 0
   userData: 
   assetBundleName: 

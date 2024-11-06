@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ScoreManager : Singleton<ScoreManager>
 {
-    private int currentScore = 0;
+    [SerializeField]private int currentScore = 0;
     private int highScore = 0;
 
     public event Action<int> OnScoreChanged;

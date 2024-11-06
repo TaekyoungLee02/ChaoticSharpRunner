@@ -20,6 +20,8 @@ public class CoinItem : ItemBase
     {
         base.Use(player);
 
+        AudioManager.Instance.PlaySoundFXClip(AudioClipName.Sfx_07, transform.position, 0.5f);
+
         ScoreManager.Instance.AddScore((int)itemValue);
         magnet = false;
     }

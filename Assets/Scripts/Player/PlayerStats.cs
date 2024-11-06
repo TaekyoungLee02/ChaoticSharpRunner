@@ -41,6 +41,14 @@ public class PlayerStats : MonoBehaviour
 
         OnHealthChanged?.Invoke(health);
 
+        // 嘎绰 家府
+        AudioManager.Instance.PlaySoundFXClip(AudioClipName.Sfx_Hit, transform.position, 0.5f);
+
+        // 脚澜 家府
+        int voiceRand = UnityEngine.Random.Range(0, 5);
+        AudioManager.Instance.PlaySoundFXClip(AudioClipName.UnityChan_Aha1 + voiceRand, transform.position, 0.5f);
+
+
         if (health <= 0)
         {
             Die();

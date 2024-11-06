@@ -477,7 +477,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 20
-  jumpForce: 200
+  jumpForce: 250
   slideDuration: 1
   fallMultiplier: 1.25
   customGravity: -30
@@ -503,7 +503,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentGauge: 0
   maxGauge: 100
-  gaugeRechargeRate: 1
+  gaugeRechargeRate: 3
   gaugeDrainRate: 10
 --- !u!114 &7339626899708200115
 MonoBehaviour:
@@ -536,7 +536,7 @@ MonoBehaviour:
   _life: 0
   maxHealth: 100
   maxLife: 3
-  invincibilityDuration: 0
+  invincibilityDuration: 2
 --- !u!114 &5959422970253199432
 MonoBehaviour:
   m_ObjectHideFlags: 0

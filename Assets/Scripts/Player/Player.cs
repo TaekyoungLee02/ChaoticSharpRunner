@@ -33,6 +33,6 @@ public class Player : MonoBehaviour
 
     private void ResetPosition()
     {
-        transform.position = Vector3.zero;
+        transform.position = new Vector3(0, 5, 0);
     }
 }

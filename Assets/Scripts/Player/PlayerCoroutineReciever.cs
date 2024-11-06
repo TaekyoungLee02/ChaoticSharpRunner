@@ -16,6 +16,8 @@ public class PlayerCoroutineReciever : MonoBehaviour
 
     public void StopCoroutine()
     {
+        if (this.coroutine == null) return;
+
         StopCoroutine(coroutine);
         coroutine = null;
     }

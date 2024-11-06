@@ -5,7 +5,6 @@ using UnityEngine;
 public class GameManager : Singleton<GameManager>
 {
     public GameObject playerPrefab;
-    public GameObject mapSpawner;
     public Player player;
 
     public event Action OnTitleScreen;
@@ -37,7 +36,6 @@ public class GameManager : Singleton<GameManager>
         {
             StartGame();
             InstantiatePlayer();
-            InstantiateMap();
         }
         else if (scene.name == "TitleScene")
         {
@@ -56,11 +54,6 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    private void InstantiateMap()
-    {
-
-    }
-
     public void ShowTitleScreen()
     {
         OnTitleScreen?.Invoke();
@@ -69,6 +62,10 @@ public class GameManager : Singleton<GameManager>
     public void StartGame()
     {
         OnGameStart?.Invoke();
+        isPaused = false;
+        Time.timeScale = 1;
+        isGameOver = false;
+        OnTogglePause?.Invoke(isPaused);
     }
 
     public void GameOver()
@@ -88,6 +85,7 @@ public class GameManager : Singleton<GameManager>
     {
         ResumeState();
         player?.InitializePlayer();
+        isGameOver = false;
         OnGameRestart?.Invoke();
         ScoreManager.Instance.InitializeScore();
     }

@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float groundCheckRadius;
 
     [SerializeField] private Collider sideCollisionCheckCollider;
+    [SerializeField] private Animator anim;
 
     void Awake()
     {
@@ -125,6 +126,8 @@ public class PlayerController : MonoBehaviour
 
             AudioManager.Instance.PlaySoundFXClip(AudioClipName.Sfx_46, transform.position, 0.5f);
             AudioManager.Instance.PlaySoundFXClip(AudioClipName.UnityChan_Yat, transform.position, 0.5f);
+
+            anim.SetTrigger("jump");
         }
     }
 
@@ -137,6 +140,8 @@ public class PlayerController : MonoBehaviour
 
         AudioManager.Instance.PlaySoundFXClip(AudioClipName.Sfx_47, transform.position, 0.5f);
         AudioManager.Instance.PlaySoundFXClip(AudioClipName.UnityChan_Yat, transform.position, 0.5f);
+
+        anim.SetTrigger("slide");
     }
 
     private bool IsGrounded()

@@ -21,6 +21,7 @@ public class CoinItem : ItemBase
     public void EnableMagnet()
     {
         magnet = true;
+        transform.SetParent(null);
     }
 
     private void FixedUpdate()

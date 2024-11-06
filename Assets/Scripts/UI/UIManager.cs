@@ -1,58 +1,41 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
 
 public class UIManager : Singleton<UIManager>
 {
-    [SerializeField] private GameObject[] uiRootPrefabs;
-    [SerializeField] private GameObject[] pausePanelPrefab;
-    private GameObject uiRootInstance;
+    [SerializeField] private GameObject titleUIPrefab;
+    [SerializeField] private GameObject inGameUIPrefab;
+    [SerializeField] private GameObject gameOverPanelPrefab;
+    [SerializeField] private GameObject pausePanelPrefab;
+
+    private GameObject titleUIInstance;
+    private GameObject inGameUIInstance;
+    private GameObject gameOverPanelInstance;
     private GameObject pausePanelInstance;
 
+    private GameObject canvasObject;
+    private GameObject eventSystemObject;
+        
     private void Start()
     {
-        SceneManager.sceneLoaded += SceneLoad;
-
-        // 첫 번째 씬이 TitleScene인 경우 타이틀 UI를 바로 초기화
-        if (SceneManager.GetActiveScene().name == "TitleScene")
-        {
-            InitializeUI(0); // Title UI를 배열의 첫 번째 프리팹으로 가정
-        }
+        GameManager.Instance.OnTitleScreen += ShowTitleUI;
+        GameManager.Instance.OnGameStart += ShowInGameUI;
+        GameManager.Instance.OnGameOver += ShowGameOverPanel;
+        GameManager.Instance.OnTogglePause += TogglePausePanel;
+        GameManager.Instance.OnGoToTitleScene += HandleGoToTitleScene;
+        GameManager.Instance.OnResumeGame += HidePausePanel;
+        GameManager.Instance.OnGameRestart += HidePausePanel;
     }
 
-    private void OnDestroy()
+    private void CreateCanvasAndEventSystem()
     {
-        SceneManager.sceneLoaded -= SceneLoad;
-    }
-
-    void SceneLoad(Scene scene, LoadSceneMode mode)
-    {
-        if (scene.name == "InGameScene")
+        if (canvasObject == null)
         {
-            InitializeUI(1); // InGame UI를 배열의 두 번째 프리팹으로 가정
-        }
-        else if (scene.name == "TitleScene")
-        {
-            InitializeUI(0); // Title UI를 배열의 첫 번째 프리팹으로 가정
-        }
-    }
-
-    public void InitializeUI(int prefabIndex)
-    {
-        if (uiRootInstance == null && uiRootPrefabs != null && prefabIndex >= 0 && prefabIndex < uiRootPrefabs.Length)
-        {
-            // 항상 새로운 EventSystem 생성
-            GameObject eventSystem = new GameObject("EventSystem");
-            eventSystem.AddComponent<EventSystem>();
-            eventSystem.AddComponent<StandaloneInputModule>();
-
-            // 항상 새로운 Canvas 생성
-            GameObject canvasObject = new GameObject("Canvas");
-            Canvas canvas = canvasObject.AddComponent<Canvas>();
+            canvasObject = new GameObject("Canvas");
+            var canvas = canvasObject.AddComponent<Canvas>();
             canvas.renderMode = RenderMode.ScreenSpaceOverlay;
-
-            // CanvasScaler 설정
             CanvasScaler canvasScaler = canvasObject.AddComponent<CanvasScaler>();
             canvasScaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
             canvasScaler.referenceResolution = new Vector2(1920, 1080);
@@ -60,36 +43,76 @@ public class UIManager : Singleton<UIManager>
             canvasScaler.matchWidthOrHeight = 0.5f;
 
             canvasObject.AddComponent<GraphicRaycaster>();
-
-            // 선택된 UIRoot 프리팹을 캔버스 하위에 생성
-            uiRootInstance = Instantiate(uiRootPrefabs[prefabIndex], canvas.transform);
-
-            if (pausePanelPrefab[prefabIndex] != null)
-            {
-                pausePanelInstance = Instantiate(pausePanelPrefab[prefabIndex], canvas.transform);
-                pausePanelInstance.SetActive(false);
-            }
         }
 
-        // UI 요소 초기화
-        var condition = uiRootInstance?.GetComponentInChildren<UICondition>();
-        condition?.Initialize();
+        if (eventSystemObject == null)
+        {
+            eventSystemObject = new GameObject("EventSystem");
+            eventSystemObject.AddComponent<EventSystem>();
+            eventSystemObject.AddComponent<StandaloneInputModule>();
+        }
     }
 
-    public void TogglePauseMenu(bool show)
+    private void ShowTitleUI()
+    {
+        DestroyAllUIInstances();
+        titleUIInstance = Instantiate(titleUIPrefab, canvasObject.transform);
+    }
+
+    private void ShowInGameUI()
+    {
+        DestroyAllUIInstances();
+        inGameUIInstance = Instantiate(inGameUIPrefab, canvasObject.transform);
+    }
+
+
+    private void ShowGameOverPanel()
+    {
+        if (gameOverPanelInstance == null)
+        {
+            gameOverPanelInstance = Instantiate(gameOverPanelPrefab, canvasObject.transform);
+        }
+        gameOverPanelInstance.SetActive(true);
+    }
+
+    private void TogglePausePanel(bool isPaused)
+    {
+        if (pausePanelInstance == null)
+        {
+            pausePanelInstance = Instantiate(pausePanelPrefab, canvasObject.transform);
+        }
+        pausePanelInstance.SetActive(isPaused);
+    }
+
+    private void HidePausePanel()
     {
         if (pausePanelInstance != null)
         {
-            pausePanelInstance.SetActive(show);
+            pausePanelInstance.SetActive(false);
+        }
+
+        if (gameOverPanelInstance != null)
+        {
+            gameOverPanelInstance.SetActive(false);
         }
     }
 
-    public void ResetUI()
+    private void HandleGoToTitleScene()
     {
-        if (uiRootInstance != null)
+        DestroyAllUIInstances();
+        ShowTitleUI();
+    }
+
+    private void DestroyAllUIInstances()
+    {
+        if (titleUIInstance != null) Destroy(titleUIInstance);
+        if (inGameUIInstance != null) Destroy(inGameUIInstance);
+        if (gameOverPanelInstance != null) Destroy(gameOverPanelInstance);
+        if (pausePanelInstance != null) Destroy(pausePanelInstance);
+
+        if (canvasObject == null || eventSystemObject == null)
         {
-            var condition = uiRootInstance.GetComponentInChildren<UICondition>();
-            condition?.ResetUI();
+            CreateCanvasAndEventSystem();
         }
     }
 }

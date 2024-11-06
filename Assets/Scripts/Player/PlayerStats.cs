@@ -73,7 +73,7 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
-    public void ResetStats()
+    public void ResetStats() // 죽고 목숨이 남았을때 필요한 함수
     {
         life--;
         health = maxHealth;
@@ -85,7 +85,7 @@ public class PlayerStats : MonoBehaviour
         StartInvincibility(invincibilityDuration);
     }
 
-    public void InitializeStats()
+    public void InitializeStats() // 아예 초기화 (게임 다시시작, 처음시작 할때 필요한 함수)
     {
         health = maxHealth;
         life = maxLife;

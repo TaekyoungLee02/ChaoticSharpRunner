@@ -37,6 +37,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.Instance.IsPaused) return;
+
         lastValidPosition = transform.position;
 
         Vector3 targetPosition = transform.position;
@@ -62,6 +64,8 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (GameManager.Instance.IsPaused) return;
+
         if (rb.velocity.y < 0)
         {
             rb.AddForce(Vector3.up * customGravity * fallMultiplier, ForceMode.Acceleration);
@@ -75,7 +79,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnMoveLeft(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Performed)
+        if (GameManager.Instance.IsPaused || context.phase != InputActionPhase.Performed) return;
         {
             if (desiredLane > 0)
             {
@@ -91,7 +95,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnMoveRight(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Performed)
+        if (GameManager.Instance.IsPaused || context.phase != InputActionPhase.Performed) return;
         {
             if (desiredLane < 2)
             {
@@ -107,7 +111,9 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Started && (IsGrounded() || jumpCount < 2))
+        if (GameManager.Instance.IsPaused || context.phase != InputActionPhase.Started) return;
+
+        if (IsGrounded() || jumpCount < 2)
         {
             rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
@@ -117,7 +123,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnSlide(InputAction.CallbackContext context)
     {
-        if (context.performed && IsGrounded() && !isSliding)
+        if (GameManager.Instance.IsPaused || !context.performed || !IsGrounded() || isSliding) return;
         {
             StartCoroutine(Slide());
         }
@@ -176,11 +182,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void OnGoToMainMenu(InputAction.CallbackContext context)
+    public void GoToTitleScene(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)
         {
-            GameManager.Instance.GoToMainMenu();
+            GameManager.Instance.GoToTitleScene();
         }
     }
 

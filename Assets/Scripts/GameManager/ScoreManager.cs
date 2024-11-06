@@ -14,21 +14,6 @@ public class ScoreManager : Singleton<ScoreManager>
         LoadHighScore();
     }
 
-    private void Update()
-    {
-        // 테스트용
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            AddScore(10);
-        }
-
-        if (Input.GetKeyDown(KeyCode.R)) // 예를 들어 R키
-        {
-            ResetHighScore();
-        }
-
-    }
-
     private void LoadHighScore()
     {
         highScore = PlayerPrefs.GetInt("HighScore", 0);
@@ -69,7 +54,6 @@ public class ScoreManager : Singleton<ScoreManager>
         highScore = 0;
         SaveHighScore();
         OnHighScoreChanged?.Invoke(highScore);
-        Debug.Log("High score has been reset.");
     }
 
     public void InitializeScore()

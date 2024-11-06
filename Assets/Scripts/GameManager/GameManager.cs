@@ -1,26 +1,45 @@
 using System;
-using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
     public GameObject playerPrefab;
     public Player player;
-    public event Action OnGameReset;
-    public event Action OnGameOver;
-    private bool isPaused = false;
 
-    void Start()
+    public event Action OnTitleScreen;
+    public event Action OnGameStart;
+    public event Action OnGameOver;
+    public event Action OnGameReset;
+    public event Action OnGameRestart;
+    public event Action<bool> OnTogglePause;
+    public event Action OnGoToTitleScene;
+    public event Action OnResumeGame;
+
+    private bool isPaused = false;
+    public bool IsPaused => isPaused;
+    private bool isGameOver = false;
+
+    private void Start()
     {
-        SceneManager.sceneLoaded += SceneLoad;
+        SceneManager.sceneLoaded += OnSceneLoaded;
+
+        if (SceneManager.GetActiveScene().name == "TitleScene")
+        {
+            ShowTitleScreen();
+        }
     }
 
-    void SceneLoad(Scene scene, LoadSceneMode mode)
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if (scene.name == "InGameScene")
         {
+            StartGame();
             InstantiatePlayer();
-            InitializeGame();
+        }
+        else if (scene.name == "TitleScene")
+        {
+            ShowTitleScreen();
         }
     }
 
@@ -30,96 +49,75 @@ public class GameManager : Singleton<GameManager>
         {
             GameObject playerObject = Instantiate(playerPrefab);
             player = playerObject.GetComponent<Player>();
-
-            if (player == null)
-            {
-                Debug.LogError("Player 프리팹에 Player 컴포넌트가 없습니다.");
-            }
-            else
-            {
-                player.stats.OnPlayerDeath += EndGame;
-                Debug.Log("Player가 성공적으로 생성되었습니다.");
-            }
-        }
-        else if (player == null)
-        {
-            Debug.LogError("Player 프리팹이 할당되지 않았습니다.");
-        }
-    }
-
-    private void InitializeGame()
-    {
-        if (player != null)
-        {
             player.InitializePlayer();
-            // 맵 초기화
-            // 아이템 효과 초기화
-            ScoreManager.Instance.InitializeScore();
-        }
-        else
-        {
-            Debug.LogError("Player가 초기화되지 않았습니다.");
+            player.stats.OnPlayerDeath += GameOver;
         }
     }
 
-    public void TogglePause()
+    public void ShowTitleScreen()
     {
-        if (isPaused)
-        {
-            ResumeGame();
-        }
-        else
-        {
-            PauseGame();
-        }
+        OnTitleScreen?.Invoke();
     }
 
-    private void PauseGame()
+    public void StartGame()
     {
-        Time.timeScale = 0;
-        isPaused = true;
-        UIManager.Instance.TogglePauseMenu(true);
-    }
-
-    public void ResumeGame()
-    {
-        Time.timeScale = 1;
+        OnGameStart?.Invoke();
         isPaused = false;
-        UIManager.Instance.TogglePauseMenu(false);
-    }
-
-    public void ResetGame()
-    {
-        player.ResetPlayer();
-        OnGameReset?.Invoke();
-    }
-
-    public void EndGame()
-    {
-        OnGameOver?.Invoke();
-        if (player != null && player.stats != null)
-        {
-            player.stats.OnPlayerDeath -= EndGame;
-        }
-    }
-
-    public void RestartGame()
-    {
         Time.timeScale = 1;
-        isPaused = false;
-        UIManager.Instance.TogglePauseMenu(false);
-        ScoreManager.Instance.InitializeScore();
-        player.InitializePlayer();
-    }
-
-    public void GoToMainMenu()
-    {
-        Time.timeScale = 1;
-        SceneManager.LoadScene("TitleScene");
+        isGameOver = false;
+        OnTogglePause?.Invoke(isPaused);
     }
 
     public void GameOver()
     {
+        isGameOver = true;
+        Time.timeScale = 0;
+        OnGameOver?.Invoke();
+    }
 
+    public void ResetGame()
+    {
+        player?.ResetPlayer();
+        OnGameReset?.Invoke();
+    }
+
+    public void RestartGame()
+    {
+        ResumeState();
+        player?.InitializePlayer();
+        isGameOver = false;
+        OnGameRestart?.Invoke();
+        ScoreManager.Instance.InitializeScore();
+    }
+
+    public void TogglePause()
+    {
+        if (isGameOver) return;
+        SetPauseState(!isPaused);
+    }
+
+    public void GoToTitleScene()
+    {
+        OnGoToTitleScene?.Invoke();
+        SceneManager.LoadScene("TitleScene");
+    }
+
+    public void ResumeGame()
+    {
+        ResumeState();
+        OnResumeGame?.Invoke();
+    }
+
+    private void ResumeState()
+    {
+        isPaused = false;
+        Time.timeScale = 1;
+    }
+
+    private void SetPauseState(bool pause)
+    {
+        isPaused = pause;
+        Time.timeScale = isPaused ? 0 : 1;
+        OnTogglePause?.Invoke(isPaused);
     }
 }

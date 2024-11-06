@@ -15,9 +15,9 @@ public class GameManager : Singleton<GameManager>
     public event Action<bool> OnTogglePause;
     public event Action OnGoToTitleScene;
     public event Action OnResumeGame;
+    public Action OnSpeedStart;
 
-    private bool isPaused = false;
-    public bool IsPaused => isPaused;
+    public bool isPaused = false;
     private bool isGameOver = false;
 
     private void Start()
@@ -62,10 +62,9 @@ public class GameManager : Singleton<GameManager>
     public void StartGame()
     {
         OnGameStart?.Invoke();
-        isPaused = false;
+        isPaused = true;
         Time.timeScale = 1;
         isGameOver = false;
-        OnTogglePause?.Invoke(isPaused);
     }
 
     public void GameOver()
@@ -79,6 +78,9 @@ public class GameManager : Singleton<GameManager>
     {
         player?.ResetPlayer();
         OnGameReset?.Invoke();
+
+        AudioManager.Instance.PlayBGMClip(AudioClipName.Bgm_CasualGame03, 0.3f);
+
     }
 
     public void RestartGame()
@@ -100,6 +102,9 @@ public class GameManager : Singleton<GameManager>
     {
         OnGoToTitleScene?.Invoke();
         SceneManager.LoadScene("TitleScene");
+
+        AudioManager.Instance.StopBackgroundMusic();
+
     }
 
     public void ResumeGame()

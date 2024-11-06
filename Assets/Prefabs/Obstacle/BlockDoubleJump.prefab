@@ -260,7 +260,7 @@ GameObject:
   - component: {fileID: 7086226060734292345}
   - component: {fileID: 7273607222812154869}
   - component: {fileID: 1075238569583761034}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BlockDoubleJump
   m_TagString: Untagged
   m_Icon: {fileID: 0}

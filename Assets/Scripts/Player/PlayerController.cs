@@ -9,37 +9,35 @@ public class PlayerController : MonoBehaviour
     public float slideDuration = 0.5f;
     private const float LANE_DISTANCE = 5.0f; // 레인 간의 거리
 
-    private int desiredLane = 1; // 0 = Left, 1 = Middle, 2 = Right
+    private int desiredLane = 1; // 0 = Left, 1 = Middle, 2 = Right  <- 이런 건 int가 아니라 enum으로 만드는 게 좋습니다...
     private Rigidbody rb;
     private bool isSliding = false;
     private int jumpCount = 0;
-    private Vector3 lastValidPosition;
+    private int lastLane;
 
     [SerializeField] private float fallMultiplier = 2.5f;
     [SerializeField] private float customGravity = -9.81f;
 
     private float originalColliderHeight;
     private Vector3 originalColliderCenter;
-    private ObstacleCollisionProcessor collisionProcessor;
 
     [SerializeField] private CapsuleCollider slideCollider;
     [SerializeField] private LayerMask groundLayerMask;
     [SerializeField] private LayerMask structureLayerMask;
     [SerializeField] private float groundCheckRadius;
 
+    [SerializeField] private Collider sideCollisionCheckCollider;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        collisionProcessor = GetComponent<ObstacleCollisionProcessor>();
         originalColliderHeight = slideCollider.height;
         originalColliderCenter = slideCollider.center;
     }
 
     private void Update()
     {
-        if (GameManager.Instance.IsPaused) return;
-
-        lastValidPosition = transform.position;
+        if (GameManager.Instance.isPaused) return;
 
         Vector3 targetPosition = transform.position;
         targetPosition.z = transform.position.z;
@@ -64,7 +62,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (GameManager.Instance.IsPaused) return;
+        if (GameManager.Instance.isPaused) return;
 
         if (rb.velocity.y < 0)
         {
@@ -79,11 +77,14 @@ public class PlayerController : MonoBehaviour
 
     public void OnMoveLeft(InputAction.CallbackContext context)
     {
-        if (GameManager.Instance.IsPaused || context.phase != InputActionPhase.Performed) return;
+        if (GameManager.Instance.isPaused || context.phase != InputActionPhase.Performed) return;
         {
             if (desiredLane > 0)
             {
-                desiredLane--; // 왼쪽으로 레인 이동
+                lastLane = desiredLane--; // 왼쪽으로 레인 이동
+
+                AudioManager.Instance.PlaySoundFXClip(AudioClipName.Sfx_47, transform.position, 0.5f);
+                AudioManager.Instance.PlaySoundFXClip(AudioClipName.UnityChan_Yat, transform.position, 0.5f);
             }
 
             else if (desiredLane == 0)
@@ -95,11 +96,14 @@ public class PlayerController : MonoBehaviour
 
     public void OnMoveRight(InputAction.CallbackContext context)
     {
-        if (GameManager.Instance.IsPaused || context.phase != InputActionPhase.Performed) return;
+        if (GameManager.Instance.isPaused || context.phase != InputActionPhase.Performed) return;
         {
             if (desiredLane < 2)
             {
-                desiredLane++; // 오른쪽으로 레인 이동
+                lastLane = desiredLane++; // 오른쪽으로 레인 이동
+
+                AudioManager.Instance.PlaySoundFXClip(AudioClipName.Sfx_47, transform.position, 0.5f);
+                AudioManager.Instance.PlaySoundFXClip(AudioClipName.UnityChan_Yat, transform.position, 0.5f);
             }
 
             else if (desiredLane == 2)
@@ -111,22 +115,28 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (GameManager.Instance.IsPaused || context.phase != InputActionPhase.Started) return;
+        if (GameManager.Instance.isPaused || context.phase != InputActionPhase.Started) return;
 
         if (IsGrounded() || jumpCount < 2)
         {
             rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             jumpCount++;
+
+            AudioManager.Instance.PlaySoundFXClip(AudioClipName.Sfx_46, transform.position, 0.5f);
+            AudioManager.Instance.PlaySoundFXClip(AudioClipName.UnityChan_Yat, transform.position, 0.5f);
         }
     }
 
     public void OnSlide(InputAction.CallbackContext context)
     {
-        if (GameManager.Instance.IsPaused || !context.performed || !IsGrounded() || isSliding) return;
+        if (GameManager.Instance.isPaused || !context.performed || !IsGrounded() || isSliding) return;
         {
             StartCoroutine(Slide());
         }
+
+        AudioManager.Instance.PlaySoundFXClip(AudioClipName.Sfx_47, transform.position, 0.5f);
+        AudioManager.Instance.PlaySoundFXClip(AudioClipName.UnityChan_Yat, transform.position, 0.5f);
     }
 
     private bool IsGrounded()
@@ -190,10 +200,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void OnCollisionEnter(Collision collision)
+    public void SideCollision()
     {
-        //현재 레인 위치를 저장하고 변수로
-
-
+        desiredLane = lastLane;
     }
 }

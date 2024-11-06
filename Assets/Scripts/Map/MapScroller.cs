@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class MapScroller : MonoBehaviour
@@ -15,6 +16,8 @@ public class MapScroller : MonoBehaviour
     [SerializeField]
     public Transform[] itemSpawnPosition;
 
+    public List<Transform> mapAttachedObjects = new();
+
     private void Awake()
     {
         spawnController = GetComponentInParent<SpawnController>();
@@ -23,7 +26,7 @@ public class MapScroller : MonoBehaviour
 
     private void Start()
     {
-        targetPosition = new Vector3(0, 0, -30f);
+        targetPosition = new Vector3(0, -1, -30f);
     }
 
     private void OnEnable()
@@ -34,7 +37,7 @@ public class MapScroller : MonoBehaviour
                 [spawnController.mapObjectArray.Count - 1];
 
             transform.position =
-                spawnPositionObject.transform.position + new Vector3(0, 0, 30f);
+                spawnPositionObject.transform.position + new Vector3(0, -1, 30f);
         }
     }
 
@@ -57,6 +60,13 @@ public class MapScroller : MonoBehaviour
             GetMapObject();
         spawnController.mapObjectArray.Add(newMapObject);
 
+        foreach(var obj in mapAttachedObjects)
+        {
+            obj.SetParent(null);
+            obj.gameObject.SetActive(false);
+        }
+
+        mapAttachedObjects.Clear();
         gameObject.SetActive(false);
         spawnController.mapObjectArray.Remove(gameObject);
     }

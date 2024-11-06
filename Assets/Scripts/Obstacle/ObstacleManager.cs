@@ -7,12 +7,9 @@ public class ObstacleManager : Singleton<ObstacleManager>
 
     private readonly string[] OBSTACLE_NAMES = { "Barrel", "Barrier", "BlockDoubleJump", "Slide" };
 
-    private ObjectPool pool;
-
     private void Start()
     {
-        passedObstacleCount = PlayerPrefs.GetInt("ObstacleScore", 0);
-        pool = ObjectPool.Instance;
+        passedObstacleCount = PlayerPrefs.GetInt("ObstacleScore", 0);   
     }
 
     public void SpawnObstacleInMap(MapScroller map)
@@ -21,7 +18,9 @@ public class ObstacleManager : Singleton<ObstacleManager>
         {
             int rand = Random.Range(0, OBSTACLE_NAMES.Length);
 
-            var obstacle = pool.SpawnFromPool(OBSTACLE_NAMES[rand]);
+            var obstacle = ObjectPool.Instance.SpawnFromPool(OBSTACLE_NAMES[rand]);
+            map.mapAttachedObjects.Add(obstacle.transform);
+
             obstacle.transform.position = obsT.position;
             obstacle.transform.SetParent(obsT);
         }

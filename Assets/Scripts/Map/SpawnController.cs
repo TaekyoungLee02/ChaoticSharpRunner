@@ -28,7 +28,7 @@ public class SpawnController : MonoBehaviour
         GameManager.Instance.OnGameStart += InitializeMapPosition;
 
         for (int i = 0; i < mapSpawnCount; i++)
-        { // Ã³À½ ÃÊ±âÈ­ ½Ã ¸®½ºÆ®¿¡ ³ÖÀ¸¸é¼­ »ý¼º
+        { // Ã³ï¿½ï¿½ ï¿½Ê±ï¿½È­ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½é¼­ ï¿½ï¿½ï¿½ï¿½
             StartMapSpawn(i);
         }
     }
@@ -37,15 +37,17 @@ public class SpawnController : MonoBehaviour
     {
         GameObject newMapObject = GetMapObject();
         newMapObject.transform.position =
-            new Vector3(0, 0, inSpawnCount * mapSpawnDistance);
+            new Vector3(0, -1, inSpawnCount * mapSpawnDistance);
         mapObjectArray.Add(newMapObject);
     }
 
     public GameObject GetMapObject()
-    { // ¿ÀºêÁ§Æ® ·£´ý »ý¼º
+    { // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         int randomMap = Random.Range(0, mapNameArray.Length);
         GameObject outNewMap = ObjectPool.Instance.SpawnFromPool(mapNameArray[randomMap]);
-        Debug.Log(outNewMap);
+        
+        ItemManager.Instance.SpawnItemInMap(outNewMap.GetComponent<MapScroller>());
+        ObstacleManager.Instance.SpawnObstacleInMap(outNewMap.GetComponent<MapScroller>());
 
         return outNewMap;
     }
@@ -55,7 +57,7 @@ public class SpawnController : MonoBehaviour
         for (int i = 0; i < mapObjectArray.Count; i++)
         {
             mapObjectArray[i].transform.position =
-                new Vector3(0, 0, i * mapSpawnDistance);
+                new Vector3(0, -1, i * mapSpawnDistance);
         }
     }
 }

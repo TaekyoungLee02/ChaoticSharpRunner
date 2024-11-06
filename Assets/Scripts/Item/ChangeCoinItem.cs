@@ -11,6 +11,9 @@ public class ChangeCoinItem : ItemBase
 
         base.Use(player);
 
+        AudioManager.Instance.PlaySoundFXClip(AudioClipName.Sfx_08, transform.position, 0.5f);
+        AudioManager.Instance.PlaySoundFXClip(AudioClipName.UnityChan_Soret, transform.position, 0.5f);
+
         var obstacles = Physics.OverlapSphere(transform.position, itemValue, 1 << LayerMask.NameToLayer("Obstacle"));
 
         foreach (var obstacle in obstacles)
@@ -20,7 +23,7 @@ public class ChangeCoinItem : ItemBase
             var obstacleTransform = obstacle.transform;
             var coin = ObjectPool.Instance.SpawnFromPool("Coin");
 
-            coin.transform.position = obstacleTransform.position;
+            coin.transform.position = new(obstacleTransform.position.x, obstacleTransform.position.y + 1.5f, obstacleTransform.position.z);
             coin.transform.SetParent(obstacleTransform.parent);
 
             obstacle.GetComponent<Obstacle>().DestroyObstacle();

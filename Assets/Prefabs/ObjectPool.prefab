@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5633529612980048842}
   - component: {fileID: 7349342064437688725}
+  - component: {fileID: 2311047935128164040}
+  - component: {fileID: 1789979096571302969}
   m_Layer: 0
   m_Name: ObjectPool
   m_TagString: Untagged
@@ -49,29 +51,87 @@ MonoBehaviour:
     prefab: {fileID: 3443293322741268409, guid: d27d84d115a96784fb35a7bcac730003,
       type: 3}
     size: 7
-    spawnPosition: {fileID: 0}
   - tag: CoinMap2
     prefab: {fileID: 3443293322741268409, guid: a728d29186d790c4ab8fc14e9fe4f46f,
       type: 3}
     size: 7
-    spawnPosition: {fileID: 0}
   - tag: BaseMap1
     prefab: {fileID: 3443293322741268409, guid: bbe0ecdae38fc914d93bd6e7ae0f61f1,
       type: 3}
     size: 7
-    spawnPosition: {fileID: 0}
   - tag: BaseMap2
     prefab: {fileID: 3443293322741268409, guid: 7654b395db529cc47815718580c5bac3,
       type: 3}
     size: 7
-    spawnPosition: {fileID: 0}
   - tag: errerMap1
     prefab: {fileID: 3443293322741268409, guid: 6aa5b003955d73744b13ffe8a8f43e4a,
       type: 3}
     size: 7
-    spawnPosition: {fileID: 0}
   - tag: errerMap2
     prefab: {fileID: 3443293322741268409, guid: de4fb2c4b4fc942498d546ba36d74a00,
       type: 3}
     size: 7
-    spawnPosition: {fileID: 0}
+  - tag: Coin
+    prefab: {fileID: 3072325488537213281, guid: 88352fdd205553b4d9c391cd9614f442,
+      type: 3}
+    size: 100
+  - tag: Superarmor
+    prefab: {fileID: 946186970887499344, guid: 9cf72bbdeeb618943b6a118738d4d035, type: 3}
+    size: 50
+  - tag: Changecoin
+    prefab: {fileID: 4466127614545899997, guid: 7a1fe8c912d10af4281e0c4ecd6234f1,
+      type: 3}
+    size: 50
+  - tag: Heal
+    prefab: {fileID: 1728801924312977976, guid: 183e0ed78d3cca94e87f4d62c77599d8,
+      type: 3}
+    size: 50
+  - tag: Magnet
+    prefab: {fileID: 7946233346019196865, guid: bc90c37fa12c1964fa4053e2515a9517,
+      type: 3}
+    size: 50
+  - tag: Barrel
+    prefab: {fileID: 1293366173705957890, guid: 04e19d1e0218b1c4a9e85d41841376e1,
+      type: 3}
+    size: 50
+  - tag: Barrier
+    prefab: {fileID: 1101515853282070994, guid: d4d1e8b3b0054104e96f80cd075a2a18,
+      type: 3}
+    size: 50
+  - tag: BlockDoubleJump
+    prefab: {fileID: 3899699254111421507, guid: d45fcd684b45fc04c9a4e1fd193ee035,
+      type: 3}
+    size: 50
+  - tag: Slide
+    prefab: {fileID: 1719030687833572831, guid: c95f3914b33de844cb6e41223bec92fa,
+      type: 3}
+    size: 50
+--- !u!114 &2311047935128164040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1150666432235979291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d58a6f6867deab446a2488da533e2a22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mapObjectArray: []
+--- !u!114 &1789979096571302969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1150666432235979291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27e20e6bead84bd4c9d3e051e69c9f5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10
+  runTime: 0
+  accelerationCoolTime: 5
+  isPlayerDamage: 0

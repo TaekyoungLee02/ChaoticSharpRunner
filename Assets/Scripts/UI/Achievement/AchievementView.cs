@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AchievementView : MonoBehaviour
 {
@@ -23,5 +24,10 @@ public class AchievementView : MonoBehaviour
         }
 
         viewContent.sizeDelta = new Vector2(0, (prefabHeight + 20) * achievements.Count);
+    }
+
+    public void BackButton()
+    {
+        SceneManager.LoadScene("TitleScene");
     }
 }

@@ -1,14 +1,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 public class ItemManager : Singleton<ItemManager>
 {
     private List<ItemSO> items;
-    private readonly Dictionary<ItemType, string> itemTypeToString = new();
-
-    private ObjectPool pool;
+    private Dictionary<ItemType, string> itemTypeToString;
 
     private int usedItemCount;
     public int UsedItemCount { get { return usedItemCount; } }
@@ -28,18 +25,14 @@ public class ItemManager : Singleton<ItemManager>
 
     private void Start()
     {
-        pool = ObjectPool.Instance;
-        InitItemTypeString();
-
         usedItemCount = PlayerPrefs.GetInt("ItemScore", 0);
-
-        foreach (var item in items) Debug.Log(item.itemName);
-
     }
 
     private void InitItemTypeString()
     {
-        for(int i = 0; i < System.Enum.GetValues(typeof(ItemType)).Length; i ++)
+        itemTypeToString = new();
+
+        for (int i = 0; i < System.Enum.GetValues(typeof(ItemType)).Length; i ++)
         {
             string type = ((ItemType)i).ToString();
             string firstCase = type[0].ToString();
@@ -49,7 +42,12 @@ public class ItemManager : Singleton<ItemManager>
             itemTypeToString.Add((ItemType)i, type);
         }
     }
-    private string ItemTypeToString(ItemType type) => itemTypeToString[type];
+    private string ItemTypeToString(ItemType type)
+    {
+        if (itemTypeToString == null) InitItemTypeString();
+
+        return itemTypeToString[type];
+    }
 
     public GameObject SpawnItemRand(ItemType type)
     {
@@ -79,7 +77,7 @@ public class ItemManager : Singleton<ItemManager>
     {
         string type = ItemTypeToString(itemInfo.itemType);
 
-        GameObject item = pool.SpawnFromPool(type);
+        GameObject item = ObjectPool.Instance.SpawnFromPool(type);
         item.GetComponent<ItemBase>().Init(itemInfo);
 
         return item;
@@ -91,6 +89,8 @@ public class ItemManager : Singleton<ItemManager>
         foreach(var coinT in map.coinSpawnPosition)
         {
             var coin = SpawnItemRand(ItemType.COIN);
+            map.mapAttachedObjects.Add(coin.transform);
+
             coin.transform.position = coinT.position;
             coin.transform.SetParent(coinT);
         }
@@ -101,6 +101,8 @@ public class ItemManager : Singleton<ItemManager>
             int randItem = Random.Range(1, System.Enum.GetValues(typeof(ItemType)).Length);
 
             var item = SpawnItemRand((ItemType)randItem);
+            map.mapAttachedObjects.Add(item.transform);
+
             item.transform.position = itemT.position;
             item.transform.SetParent(itemT);
         }

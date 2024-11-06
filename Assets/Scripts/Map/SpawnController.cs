@@ -14,10 +14,13 @@ public enum ObstacleType
 
 public class SpawnController : MonoBehaviour
 {
-    private string[] mapNameArray = { "BaseMap1", "BaseMap2", "CoinMap1",
-    "CoinMap2", "ErrerMap1", "ErrerMap2"};
+    //public MapSpawnSetting mapSetting;
+
+    [SerializeField]
+    private string[] mapNameArray;
     public List<GameObject> mapObjectArray = new List<GameObject>();
 
+    [SerializeField]
     private float mapSpawnDistance = 30;
     private int mapSpawnCount = 6;
 

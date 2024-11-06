@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3547a66149c34bc48a6bc3a2727dade9, type: 3}
   m_Name: Coin00
   m_EditorClassIdentifier: 
-  itemName: 
-  itemDescription: 
-  itemValue: 0
+  itemName: Coin
+  itemDescription: "\uCF54\uC778"
+  itemType: 0
+  itemValue: 5
   duration: 0

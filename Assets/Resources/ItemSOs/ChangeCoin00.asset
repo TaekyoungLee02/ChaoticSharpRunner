@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3547a66149c34bc48a6bc3a2727dade9, type: 3}
   m_Name: ChangeCoin00
   m_EditorClassIdentifier: 
-  itemName: 
-  itemDescription: 
-  itemValue: 0
+  itemName: ChangeCoin
+  itemDescription: "\uC7A5\uC560\uBB3C\uC744 \uCF54\uC778\uC73C\uB85C \uBC14\uAFBC\uB2E4."
+  itemType: 3
+  itemValue: 5
   duration: 0

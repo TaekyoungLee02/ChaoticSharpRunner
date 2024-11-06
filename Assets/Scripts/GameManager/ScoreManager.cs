@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ScoreManager : Singleton<ScoreManager>
 {
-    private int currentScore = 0;
+    [SerializeField]private int currentScore = 0;
     private int highScore = 0;
 
     public event Action<int> OnScoreChanged;
@@ -39,12 +39,6 @@ public class ScoreManager : Singleton<ScoreManager>
         }
     }
 
-    public void ResetScore()
-    {
-        currentScore = 0;
-        OnScoreChanged?.Invoke(currentScore);
-    }
-
     public int GetCurrentScore()
     {
         return currentScore;
@@ -53,5 +47,18 @@ public class ScoreManager : Singleton<ScoreManager>
     public int GetHighScore()
     {
         return highScore;
+    }
+
+    public void ResetHighScore()
+    {
+        highScore = 0;
+        SaveHighScore();
+        OnHighScoreChanged?.Invoke(highScore);
+    }
+
+    public void InitializeScore()
+    {
+        currentScore = 0;
+        OnScoreChanged?.Invoke(currentScore);
     }
 }

@@ -17,11 +17,14 @@ public class ChangeCoinItem : ItemBase
         {
             Debug.Log(obstacle.name);
 
-            var obstaclePosition = obstacle.transform.position;
+            var obstacleTransform = obstacle.transform;
+            var coin = ObjectPool.Instance.SpawnFromPool("Coin");
+
+            coin.transform.position = obstacleTransform.position;
+            coin.transform.SetParent(obstacleTransform.parent);
+
             obstacle.GetComponent<Obstacle>().DestroyObstacle();
 
-            var coin = ObjectPool.Instance.SpawnFromPool("CoinItem");
-            coin.transform.position = obstaclePosition;
         }
     }
 }

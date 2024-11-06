@@ -13,17 +13,18 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
     private bool isSliding = false;
     private int jumpCount = 0;
+    private Vector3 lastValidPosition;
 
     [SerializeField] private float fallMultiplier = 2.5f;
     [SerializeField] private float customGravity = -9.81f;
 
     private float originalColliderHeight;
     private Vector3 originalColliderCenter;
-
     private ObstacleCollisionProcessor collisionProcessor;
 
     [SerializeField] private CapsuleCollider slideCollider;
     [SerializeField] private LayerMask groundLayerMask;
+    [SerializeField] private LayerMask structureLayerMask;
     [SerializeField] private float groundCheckRadius;
 
     void Awake()
@@ -36,6 +37,10 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.Instance.IsPaused) return;
+
+        lastValidPosition = transform.position;
+
         Vector3 targetPosition = transform.position;
         targetPosition.z = transform.position.z;
 
@@ -59,6 +64,8 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (GameManager.Instance.IsPaused) return;
+
         if (rb.velocity.y < 0)
         {
             rb.AddForce(Vector3.up * customGravity * fallMultiplier, ForceMode.Acceleration);
@@ -72,7 +79,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnMoveLeft(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Performed)
+        if (GameManager.Instance.IsPaused || context.phase != InputActionPhase.Performed) return;
         {
             if (desiredLane > 0)
             {
@@ -81,15 +88,14 @@ public class PlayerController : MonoBehaviour
 
             else if (desiredLane == 0)
             {
-                // 왼쪽 끝에서 왼쪽 이동 시도 시 데미지 처리
-                //collisionProcessor.TriggerHitObstacle();
+                GameManager.Instance.player.stats.TakeDamage(10);
             }
         }
     }
 
     public void OnMoveRight(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Performed)
+        if (GameManager.Instance.IsPaused || context.phase != InputActionPhase.Performed) return;
         {
             if (desiredLane < 2)
             {
@@ -98,15 +104,16 @@ public class PlayerController : MonoBehaviour
 
             else if (desiredLane == 2)
             {
-                // 오른쪽 끝에서 오른쪽 이동 시도 시 데미지 처리
-                //collisionProcessor.TriggerHitObstacle();
+                GameManager.Instance.player.stats.TakeDamage(10);
             }
         }
     }
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Started && (IsGrounded() || jumpCount < 2))
+        if (GameManager.Instance.IsPaused || context.phase != InputActionPhase.Started) return;
+
+        if (IsGrounded() || jumpCount < 2)
         {
             rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
@@ -116,7 +123,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnSlide(InputAction.CallbackContext context)
     {
-        if (context.performed && IsGrounded() && !isSliding)
+        if (GameManager.Instance.IsPaused || !context.performed || !IsGrounded() || isSliding) return;
         {
             StartCoroutine(Slide());
         }
@@ -157,5 +164,36 @@ public class PlayerController : MonoBehaviour
 
         slideCollider.height = originalColliderHeight;
         slideCollider.center = originalColliderCenter;
+    }
+
+    public void OnTogglePause(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            GameManager.Instance.TogglePause();
+        }
+    }
+
+    public void OnRestartGame(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            GameManager.Instance.RestartGame();
+        }
+    }
+
+    public void GoToTitleScene(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            GameManager.Instance.GoToTitleScene();
+        }
+    }
+
+    public void OnCollisionEnter(Collision collision)
+    {
+        //현재 레인 위치를 저장하고 변수로
+
+
     }
 }

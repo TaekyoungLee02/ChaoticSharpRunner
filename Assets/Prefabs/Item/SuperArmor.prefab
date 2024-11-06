@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4724184341147236360}
   - component: {fileID: 5034517513253555143}
   - component: {fileID: 2951639786712162763}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: SuperArmor
   m_TagString: Untagged
   m_Icon: {fileID: 0}

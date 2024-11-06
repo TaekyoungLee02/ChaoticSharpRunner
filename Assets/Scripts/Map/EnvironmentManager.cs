@@ -2,18 +2,18 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class EnvironmentManager : Singleton<EnvironmentManager>
 {
     public event Action<string> OnEnvironmentChanged;
-    
+    [SerializeField]
     private string currentEnvironment;
+    [SerializeField]
     private string newEnvironment;
 
     [Range(0.0f, 1.0f)]
     public float time;
     public float fullDayLength;
-    public float startTime = 0.4f;
+    public float startTime;
     private float timeRate;
     public Vector3 noon; // 90, 0, 0
 
@@ -31,15 +31,28 @@ public class EnvironmentManager : Singleton<EnvironmentManager>
     public AnimationCurve lightingIntensityMultiplier;
     public AnimationCurve reflectionIntensityMultiplier;
 
+    EnvironmentData EnvironmentSettingsData;
+
     private void Start()
     {
+        if (EnvironmentSettingsData == null)
+        {
+            DataSetting(Resources.Load<EnvironmentData>("EnvironmentDatas/Environments"));
+        }
+
+        startTime = 0.4f;
         timeRate = 1.0f / fullDayLength;
         time = startTime;
         currentEnvironment = "Day";
+
+        GameManager.Instance.OnGameReset += InitializeEnvironmentData;
+        GameManager.Instance.OnGameRestart += InitializeEnvironmentData;
+        GameManager.Instance.OnGameStart += InitializeEnvironmentData;
     }
 
     private void Update()
     {
+
         time = (time + timeRate * Time.deltaTime) % 1.0f;
 
         UpdateLighting(sun, sunColor, sunIntensity);
@@ -50,7 +63,7 @@ public class EnvironmentManager : Singleton<EnvironmentManager>
         RenderSettings.reflectionIntensity =
             reflectionIntensityMultiplier.Evaluate(time);
 
-        if(sun.gameObject.activeInHierarchy)
+        if (sun.gameObject.activeInHierarchy)
         {
             newEnvironment = "Day";
         }
@@ -91,5 +104,25 @@ public class EnvironmentManager : Singleton<EnvironmentManager>
         time = startTime;
         currentEnvironment = "Day";
         newEnvironment = null;
+    }
+
+    private void DataSetting(EnvironmentData EnvironmentSettingsData)
+    {
+        fullDayLength = EnvironmentSettingsData.fullDayLength;
+        noon = EnvironmentSettingsData.noon;
+
+        sun = Instantiate(EnvironmentSettingsData.sun, transform);
+
+        sunColor = EnvironmentSettingsData.sunColor;
+        sunIntensity = EnvironmentSettingsData.sunIntensity;
+
+        moon = Instantiate(EnvironmentSettingsData.moon, transform);
+        moon.gameObject.SetActive(false);
+        moonColor = EnvironmentSettingsData.moonColor;
+        moonIntensity = EnvironmentSettingsData.moonIntensity;
+
+        lightingIntensityMultiplier = EnvironmentSettingsData.lightingIntensityMultiplier;
+        reflectionIntensityMultiplier = EnvironmentSettingsData.reflectionIntensityMultiplier;
+        reflectionIntensityMultiplier = EnvironmentSettingsData.reflectionIntensityMultiplier;
     }
 }

@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3547a66149c34bc48a6bc3a2727dade9, type: 3}
   m_Name: SuperArmor00
   m_EditorClassIdentifier: 
-  itemName: 
-  itemDescription: 
+  itemName: SuperArmor
+  itemDescription: "\uC7A5\uC560\uBB3C\uC5D0 \uB2FF\uC73C\uBA74 \uC7A5\uC560\uBB3C\uC744
+    \uD30C\uAD34\uD55C\uB2E4"
+  itemType: 4
   itemValue: 0
-  duration: 0
+  duration: 5

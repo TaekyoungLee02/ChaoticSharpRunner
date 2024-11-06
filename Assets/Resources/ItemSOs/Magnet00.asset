@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3547a66149c34bc48a6bc3a2727dade9, type: 3}
   m_Name: Magnet00
   m_EditorClassIdentifier: 
-  itemName: 
-  itemDescription: 
-  itemValue: 0
-  duration: 0
+  itemName: Magnet
+  itemDescription: "\uCF54\uC778\uC744 \uB04C\uC5B4\uB2F9\uAE34\uB2E4."
+  itemType: 2
+  itemValue: 5
+  duration: 5

@@ -19,6 +19,10 @@ public class MapController : MonoBehaviour
 
     private void Start()
     {
+        GameManager.Instance.OnGameReset += InitializeMapData;
+        GameManager.Instance.OnGameRestart += InitializeMapData;
+        GameManager.Instance.OnGameStart += InitializeMapData;
+
         speed = 5f;
         minSpeed = speed;
         maxSpeed = 30f;
@@ -26,7 +30,7 @@ public class MapController : MonoBehaviour
         ranTime = 0f;
 
         // 이벤트 등록: 환경이 바뀔 때 UpdateObstacleBehavior 호출
-        //EnvironmentManager.Instance.OnEnvironmentChanged += UpdateMapBehavior;
+        EnvironmentManager.Instance.OnEnvironmentChanged += UpdateMapBehavior;
 
         //GameManager.Instance.player.ability.OnSlowDown += ResetSpeed;
         //GameManager.Instance.player.ability.OnRestoreSpeed += AccelerationSpeed;

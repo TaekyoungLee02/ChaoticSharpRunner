@@ -14,8 +14,8 @@ public enum ObstacleType
 
 public class SpawnController : MonoBehaviour
 {
-    private string[] mapNameArray = { "BaseMap1", "BaseMap2", "CoinMap1",
-    "CoinMap2", "ErrerMap1", "ErrerMap2"};
+    private string[] mapNameArray = { "CoinMap1", "CoinMap2", "BaseMap1",
+    "BaseMap2", "errerMap1", "errerMap2"};
     public List<GameObject> mapObjectArray = new List<GameObject>();
 
     private float mapSpawnDistance = 30;
@@ -23,6 +23,10 @@ public class SpawnController : MonoBehaviour
 
     private void Start()
     {
+        GameManager.Instance.OnGameReset += InitializeMapPosition;
+        GameManager.Instance.OnGameRestart += InitializeMapPosition;
+        GameManager.Instance.OnGameStart += InitializeMapPosition;
+
         for (int i = 0; i < mapSpawnCount; i++)
         { // 처음 초기화 시 리스트에 넣으면서 생성
             StartMapSpawn(i);
@@ -41,6 +45,7 @@ public class SpawnController : MonoBehaviour
     { // 오브젝트 랜덤 생성
         int randomMap = Random.Range(0, mapNameArray.Length);
         GameObject outNewMap = ObjectPool.Instance.SpawnFromPool(mapNameArray[randomMap]);
+        Debug.Log(outNewMap);
 
         return outNewMap;
     }

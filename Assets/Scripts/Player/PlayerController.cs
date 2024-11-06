@@ -127,7 +127,8 @@ public class PlayerController : MonoBehaviour
             AudioManager.Instance.PlaySoundFXClip(AudioClipName.Sfx_46, transform.position, 0.5f);
             AudioManager.Instance.PlaySoundFXClip(AudioClipName.UnityChan_Yat, transform.position, 0.5f);
 
-            anim.SetTrigger("jump");
+            if (anim != null)
+                anim?.SetTrigger("jump");
         }
     }
 
@@ -141,7 +142,8 @@ public class PlayerController : MonoBehaviour
         AudioManager.Instance.PlaySoundFXClip(AudioClipName.Sfx_47, transform.position, 0.5f);
         AudioManager.Instance.PlaySoundFXClip(AudioClipName.UnityChan_Yat, transform.position, 0.5f);
 
-        anim.SetTrigger("slide");
+        if (anim != null)
+            anim?.SetTrigger("slide");
     }
 
     private bool IsGrounded()

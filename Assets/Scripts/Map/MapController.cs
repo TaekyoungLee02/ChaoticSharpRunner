@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MapController : MonoBehaviour
 {
@@ -24,18 +25,15 @@ public class MapController : MonoBehaviour
 
         GameManager.Instance.OnSpeedStart += StartSpeed;
 
-        speed = 0f;
-        minSpeed = speed;
-        maxSpeed = 30f;
-        saveSpeed = 0f;
-        runTime = 0f;
-        accelerationCoolTime = 1000f;
+        InitializeMap();
 
         // 이벤트 등록: 환경이 바뀔 때 UpdateObstacleBehavior 호출
         EnvironmentManager.Instance.OnEnvironmentChanged += UpdateMapBehavior;
 
         GameManager.Instance.player.ability.OnSlowDown += SlowSpeed;
         GameManager.Instance.player.ability.OnRestoreSpeed += ResetSpeed;
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     private void FixedUpdate()
@@ -43,6 +41,14 @@ public class MapController : MonoBehaviour
         if (speed != 0)
         {
             runTime += Time.fixedDeltaTime;
+        }
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "InGameScene")
+        {
+            InitializeMap();
         }
     }
 
@@ -108,6 +114,16 @@ public class MapController : MonoBehaviour
     private float LimitSpeed()
     {
         return speed = Mathf.Clamp(speed, minSpeed, maxSpeed);
+    }
+
+    public void InitializeMap()
+    {
+        speed = 0f;
+        minSpeed = speed;
+        maxSpeed = 30f;
+        saveSpeed = 0f;
+        runTime = 0f;
+        accelerationCoolTime = 1000f;
     }
 
     public void InitializeMapData()

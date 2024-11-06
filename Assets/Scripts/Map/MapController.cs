@@ -23,7 +23,7 @@ public class MapController : MonoBehaviour
         GameManager.Instance.OnGameRestart += InitializeMapData;
         GameManager.Instance.OnGameStart += InitializeMapData;
 
-        //GameManager.Instance.OnSpeedStart += StartSpeed;
+        GameManager.Instance.OnSpeedStart += StartSpeed;
 
         speed = 0f;
         minSpeed = speed;

@@ -52,3 +52,5 @@ MonoBehaviour:
     type: 3}
   pausePanelPrefab: {fileID: 6657729785431318943, guid: 93df8a46640214740bbf26284f76b436,
     type: 3}
+  inGameDescriptionPanelPrefab: {fileID: 6103341155509470517, guid: e1e107e5a6291ce4080cc09e70e5bc2b,
+    type: 3}

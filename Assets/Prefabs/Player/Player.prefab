@@ -483,7 +483,7 @@ MonoBehaviour:
   slideCollider: {fileID: 4368250036291360519}
   groundLayerMask:
     serializedVersion: 2
-    m_Bits: 576
+    m_Bits: 512
   structureLayerMask:
     serializedVersion: 2
     m_Bits: 512

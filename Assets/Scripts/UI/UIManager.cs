@@ -20,8 +20,6 @@ public class UIManager : Singleton<UIManager>
         
     private void Start()
     {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-
         GameManager.Instance.OnTitleScreen += ShowTitleUI;
         GameManager.Instance.OnGameStart += ShowInGameUI;
         GameManager.Instance.OnGameOver += ShowGameOverPanel;
@@ -29,23 +27,6 @@ public class UIManager : Singleton<UIManager>
         GameManager.Instance.OnGoToTitleScene += HandleGoToTitleScene;
         GameManager.Instance.OnResumeGame += HidePausePanel;
         GameManager.Instance.OnGameRestart += HidePausePanel;
-
-        if (SceneManager.GetActiveScene().name == "TitleScene")
-        {
-            ShowTitleUI();
-        }
-    }
-
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        if (scene.name == "TitleScene")
-        {
-            ShowTitleUI();
-        }
-        else if (scene.name == "InGameScene")
-        {
-            ShowInGameUI();
-        }
     }
 
     private void CreateCanvasAndEventSystem()
@@ -83,6 +64,7 @@ public class UIManager : Singleton<UIManager>
         DestroyAllUIInstances();
         inGameUIInstance = Instantiate(inGameUIPrefab, canvasObject.transform);
     }
+
 
     private void ShowGameOverPanel()
     {

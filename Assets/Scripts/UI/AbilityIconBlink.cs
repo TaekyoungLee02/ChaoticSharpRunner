@@ -7,6 +7,7 @@ public class AbilityIconBlink : MonoBehaviour
     [SerializeField] private float blinkInterval = 0.5f;
     private bool isBlinking = false;
     private float blinkTimer;
+    private bool fadingOut = true;
 
     void Start()
     {
@@ -44,13 +45,24 @@ public class AbilityIconBlink : MonoBehaviour
     {
         if (isBlinking)
         {
-            blinkTimer += Time.deltaTime;
-            if (blinkTimer >= blinkInterval)
+            blinkTimer += Time.deltaTime / blinkInterval;
+            Color color = abilityIcon.color;
+
+            if (fadingOut)
+            {
+                color.a = Mathf.Lerp(1f, 0f, blinkTimer);
+            }
+            else
+            {
+                color.a = Mathf.Lerp(0f, 1f, blinkTimer);
+            }
+
+            abilityIcon.color = color;
+
+            if (blinkTimer >= 1f)
             {
                 blinkTimer = 0f;
-                Color color = abilityIcon.color;
-                color.a = color.a == 1f ? 0f : 1f;
-                abilityIcon.color = color;
+                fadingOut = !fadingOut;
             }
         }
     }

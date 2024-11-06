@@ -122,10 +122,10 @@ public class PlayerController : MonoBehaviour
             rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             jumpCount++;
-        }
 
-        AudioManager.Instance.PlaySoundFXClip(AudioClipName.Sfx_46, transform.position, 0.5f);
-        AudioManager.Instance.PlaySoundFXClip(AudioClipName.UnityChan_Yat, transform.position, 0.5f);
+            AudioManager.Instance.PlaySoundFXClip(AudioClipName.Sfx_46, transform.position, 0.5f);
+            AudioManager.Instance.PlaySoundFXClip(AudioClipName.UnityChan_Yat, transform.position, 0.5f);
+        }
     }
 
     public void OnSlide(InputAction.CallbackContext context)

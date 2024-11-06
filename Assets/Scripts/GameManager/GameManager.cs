@@ -65,7 +65,6 @@ public class GameManager : Singleton<GameManager>
         isPaused = true;
         Time.timeScale = 1;
         isGameOver = false;
-        ScoreManager.Instance.InitializeScore();
     }
 
     public void GameOver()
@@ -79,6 +78,9 @@ public class GameManager : Singleton<GameManager>
     {
         player?.ResetPlayer();
         OnGameReset?.Invoke();
+
+        AudioManager.Instance.PlayBGMClip(AudioClipName.Bgm_CasualGame03, 0.3f);
+
     }
 
     public void RestartGame()
@@ -87,6 +89,7 @@ public class GameManager : Singleton<GameManager>
         player?.InitializePlayer();
         isGameOver = false;
         OnGameRestart?.Invoke();
+        ScoreManager.Instance.InitializeScore();
     }
 
     public void TogglePause()
@@ -99,6 +102,9 @@ public class GameManager : Singleton<GameManager>
     {
         OnGoToTitleScene?.Invoke();
         SceneManager.LoadScene("TitleScene");
+
+        AudioManager.Instance.StopBackgroundMusic();
+
     }
 
     public void ResumeGame()

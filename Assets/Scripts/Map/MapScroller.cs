@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class MapScroller : MonoBehaviour
@@ -14,6 +15,8 @@ public class MapScroller : MonoBehaviour
     public Transform[] trapSpawnPosition;
     [SerializeField]
     public Transform[] itemSpawnPosition;
+
+    public List<Transform> mapAttachedObjects = new();
 
     private void Awake()
     {
@@ -57,6 +60,13 @@ public class MapScroller : MonoBehaviour
             GetMapObject();
         spawnController.mapObjectArray.Add(newMapObject);
 
+        foreach(var obj in mapAttachedObjects)
+        {
+            obj.SetParent(null);
+            obj.gameObject.SetActive(false);
+        }
+
+        mapAttachedObjects.Clear();
         gameObject.SetActive(false);
         spawnController.mapObjectArray.Remove(gameObject);
     }

@@ -45,7 +45,9 @@ public class SpawnController : MonoBehaviour
     { // 오브젝트 랜덤 생성
         int randomMap = Random.Range(0, mapNameArray.Length);
         GameObject outNewMap = ObjectPool.Instance.SpawnFromPool(mapNameArray[randomMap]);
-        Debug.Log(outNewMap);
+        
+        ItemManager.Instance.SpawnItemInMap(outNewMap.GetComponent<MapScroller>());
+        ObstacleManager.Instance.SpawnObstacleInMap(outNewMap.GetComponent<MapScroller>());
 
         return outNewMap;
     }

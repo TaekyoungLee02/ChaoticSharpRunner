@@ -240,9 +240,10 @@ GameObject:
   - component: {fileID: 2988547027513100558}
   - component: {fileID: 7339626899708200115}
   - component: {fileID: 2198751689597960927}
+  - component: {fileID: 5959422970253199432}
   m_Layer: 3
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -531,11 +532,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb65c61eac5d54c46ad0a9fd06a502a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 0
+  _health: 100
   _life: 0
   maxHealth: 100
   maxLife: 3
   invincibilityDuration: 0
+--- !u!114 &5959422970253199432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5369883222445606020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb953937d01f1044fa36ba90d3608294, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7993412503474823617
 GameObject:
   m_ObjectHideFlags: 0

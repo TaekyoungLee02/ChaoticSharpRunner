@@ -11,11 +11,17 @@ public class CoinItem : ItemBase
         playerTransform = GameManager.Instance.player.transform;
     }
 
+    private void OnEnable()
+    {
+        magnet = false;
+    }
+
     public override void Use(Player player)
     {
         base.Use(player);
 
         ScoreManager.Instance.AddScore((int)itemValue);
+        magnet = false;
     }
 
     public void EnableMagnet()

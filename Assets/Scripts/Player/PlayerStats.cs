@@ -33,6 +33,8 @@ public class PlayerStats : MonoBehaviour
     public event Action<int> OnLifeChanged;
     public event Action OnPlayerDeath;
 
+    [SerializeField] private PlayerBlink playerBlink;
+
     public void TakeDamage(int damage)
     {
         if (isInvincible) return;
@@ -108,13 +110,14 @@ public class PlayerStats : MonoBehaviour
     {
         if (!isInvincible)
         {
+            isInvincible = true;
             StartCoroutine(InvincibilityCoroutine(duration));
+            playerBlink?.StartBlinking(duration);
         }
     }
 
     private IEnumerator InvincibilityCoroutine(float duration)
     {
-        isInvincible = true;
         yield return new WaitForSeconds(duration);
         isInvincible = false;
     }
@@ -123,13 +126,13 @@ public class PlayerStats : MonoBehaviour
     {
         if (!isSuperArmor)
         {
+            isSuperArmor = true;
             StartCoroutine(SuperArmorCoroutine(duration));
         }
     }
 
     private IEnumerator SuperArmorCoroutine(float duration)
     {
-        isSuperArmor = true;
         yield return new WaitForSeconds(duration);
         isSuperArmor = false;
     }

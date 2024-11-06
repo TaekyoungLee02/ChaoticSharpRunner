@@ -13,10 +13,10 @@ public class UICondition : MonoBehaviour
 
     private void Start()
     {
-        Initialize();
+        InitializeCondition();
     }
 
-    public void Initialize()
+    public void InitializeCondition()
     {
         playerStats = GameManager.Instance.player.stats;
         playerAbility = GameManager.Instance.player.ability;
@@ -52,7 +52,9 @@ public class UICondition : MonoBehaviour
     private void UpdateHealthUI(int health)
     {
         if (healthUIBar != null)
+        {
             healthUIBar.fillAmount = (float)health / playerStats.MaxHealth;
+        }
     }
 
     private void UpdateLifeUI(int life)
@@ -66,6 +68,8 @@ public class UICondition : MonoBehaviour
     private void UpdateAbilityGaugeUI(float currentGauge, float maxGauge)
     {
         if (abilityGaugeUIBar != null)
+        {
             abilityGaugeUIBar.fillAmount = currentGauge / maxGauge;
+        }
     }
 }

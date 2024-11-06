@@ -11,7 +11,6 @@ public class ScoreUI : MonoBehaviour
         ScoreManager.Instance.OnScoreChanged += UpdateScoreText;
         ScoreManager.Instance.OnHighScoreChanged += UpdateHighScoreText;
 
-        // 초기 점수 표시
         UpdateScoreText(ScoreManager.Instance.GetCurrentScore());
         UpdateHighScoreText(ScoreManager.Instance.GetHighScore());
     }

@@ -5,7 +5,7 @@ public class PauseMenuButtonHandler : MonoBehaviour
 {
     public Button closeMenuButton;
     public Button restartGameButton;
-    public Button goToMainMenuButton;
+    public Button goToTitleSceneButton;
 
     public void OnClickCloseMenuButton()
     {
@@ -17,15 +17,15 @@ public class PauseMenuButtonHandler : MonoBehaviour
         GameManager.Instance.RestartGame();
     }
 
-    public void OnClickGoToMainMenuButton()
+    public void OnClickGoToTitleSceneButton()
     {
-        GameManager.Instance.GoToMainMenu();
+        GameManager.Instance.GoToTitleScene();
     }
 
     void Start()
     {
         closeMenuButton.onClick.AddListener(OnClickCloseMenuButton);
         restartGameButton.onClick.AddListener(OnClickRestartGameButton);
-        goToMainMenuButton.onClick.AddListener(OnClickGoToMainMenuButton);
+        goToTitleSceneButton.onClick.AddListener(OnClickGoToTitleSceneButton);
     }
 }

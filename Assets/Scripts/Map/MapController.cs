@@ -34,8 +34,8 @@ public class MapController : MonoBehaviour
         // 이벤트 등록: 환경이 바뀔 때 UpdateObstacleBehavior 호출
         EnvironmentManager.Instance.OnEnvironmentChanged += UpdateMapBehavior;
 
-        GameManager.Instance.player.ability.OnSlowDown += ResetSpeed;
-        GameManager.Instance.player.ability.OnRestoreSpeed += AccelerationSpeed;
+        GameManager.Instance.player.ability.OnSlowDown += SlowSpeed;
+        GameManager.Instance.player.ability.OnRestoreSpeed += ResetSpeed;
     }
 
     private void FixedUpdate()
@@ -75,39 +75,28 @@ public class MapController : MonoBehaviour
 
     public float MapSpeed()
     {
-        ResetSpeed();
         AccelerationSpeed();
 
         return LimitSpeed();
     }
 
+    private void SlowSpeed()
+    {
+        saveSpeed = speed;
+        speed *= 0.5f;
+    }
+
     private void ResetSpeed()
     {
-        if (saveSpeed == 0)
-        { // 저장된 속도가 없다면
-            saveSpeed = speed;
-            speed = minSpeed;
+        if (saveSpeed != 0)
+        {
+            speed = saveSpeed;
+            saveSpeed = 0;
         }
-
-        if (isPlayerDamage)
-        { // 데미지를 입는다면 // 이것도 필요없겠네
-            runTime = 0f;
-            saveSpeed = minSpeed;
-            speed = minSpeed;
-        }
-        // bool값 필요없이 느려지는 코드 돌아오는 코드
-        // 빨라지는 것도 마찬가지
     }
 
     private void AccelerationSpeed()
     {
-        if (saveSpeed != 0)
-        { // 아이템 효과가 비활성화 상태일 때 저장된 속도가 있다면
-            speed = saveSpeed;
-            saveSpeed = 0;
-            // 속도를 저장된 값으로 설정 후 초기화
-        }
-
         if (runTime >= accelerationCoolTime)
         { // 가속 쿨타임을 넘었다면
             speed++;

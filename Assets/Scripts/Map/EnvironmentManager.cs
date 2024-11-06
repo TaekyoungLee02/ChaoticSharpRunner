@@ -1,7 +1,12 @@
+<<<<<<< Updated upstream
 //using System;
 //using System.Collections;
 //using System.Collections.Generic;
 //using UnityEngine;
+=======
+using System;
+using UnityEngine;
+>>>>>>> Stashed changes
 
 //public class EnvironmentManager : Singleton<EnvironmentManager>
 //{
@@ -45,6 +50,7 @@
 //        UpdateLighting(sun, sunColor, sunIntensity);
 //        UpdateLighting(moon, moonColor, moonIntensity);
 
+<<<<<<< Updated upstream
 //        RenderSettings.ambientIntensity =
 //            lightingIntensityMultiplier.Evaluate(time);
 //        RenderSettings.reflectionIntensity =
@@ -58,6 +64,26 @@
 //        {
 //            newEnvironment = "Night";
 //        }
+=======
+        if(sun.gameObject.activeInHierarchy)
+        {
+            newEnvironment = "Day";
+        }
+        else
+        {
+            newEnvironment = "Night";
+        }
+        if (sun != null && moon != null)
+        {
+            if (newEnvironment != currentEnvironment)
+            { // 날씨가 변경되었다면 실행
+                currentEnvironment = newEnvironment;
+                OnEnvironmentChanged?.Invoke(currentEnvironment);
+                // 환경 변경 이벤트 호출
+            }
+        }
+    }
+>>>>>>> Stashed changes
 
 //        if (newEnvironment != currentEnvironment)
 //        { // 날씨가 변경되었다면 실행
@@ -77,6 +103,7 @@
 //        lightSource.color = colorGradiant.Evaluate(time);
 //        lightSource.intensity = intensity;
 
+<<<<<<< Updated upstream
 //        GameObject lightObject = lightSource.gameObject;
 //        if (lightSource.intensity == 0 && lightObject.activeInHierarchy)
 //            lightObject.SetActive(false);
@@ -93,3 +120,13 @@
 //        newEnvironment = null;
 //    }
 //}
+=======
+    public void InitializeEnvironmentData()
+    {
+        timeRate = 1.0f / fullDayLength;
+        time = startTime;
+        currentEnvironment = "Day";
+        newEnvironment = "Day";
+    }
+}
+>>>>>>> Stashed changes

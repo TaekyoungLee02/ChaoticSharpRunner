@@ -31,9 +31,23 @@ public class SlotSlider : MonoBehaviour
         int value = (int)floatValue;
         var data = m_AccessoryDataList[value];
 
+        GameObject prefab;
+
         if (data == null)
-            m_CustomizationController.EquipAccessory(m_SlotLocation, null);
+            prefab = null;
         else
-            m_CustomizationController.EquipAccessory(m_SlotLocation, data.prefab);
+            prefab = data.prefab;
+
+        m_CustomizationController.EquipAccessory(m_SlotLocation, prefab);
+
+        switch (m_SlotLocation) {
+        case SlotLocation.Head:
+            m_CustomizedData.headSlot = prefab;
+            break;
+
+        case SlotLocation.Back:
+            m_CustomizedData.backSlot = prefab;
+            break;
+        }
     }
 }

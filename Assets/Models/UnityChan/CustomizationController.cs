@@ -14,12 +14,17 @@ public class CustomizationController : MonoBehaviour
     [SerializeField] private GameObject m_BackSlot;
 
     private Dictionary<SlotLocation, GameObject> m_SocketDic;
+    private CustomizedDataSO customizedData;
 
     private void Awake()
     {
         m_SocketDic = new Dictionary<SlotLocation, GameObject>();
         m_SocketDic.Add(SlotLocation.Head, m_HeadSlot);
         m_SocketDic.Add(SlotLocation.Back, m_BackSlot);
+
+        customizedData = Resources.Load<CustomizedDataSO>("Data/CustomizedData");
+        EquipAccessory(SlotLocation.Head, customizedData.headSlot);
+        EquipAccessory(SlotLocation.Back, customizedData.backSlot);
     }
 
     public void EquipAccessory(SlotLocation location, GameObject itemPrefab)

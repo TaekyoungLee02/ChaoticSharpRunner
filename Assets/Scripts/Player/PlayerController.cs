@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     private bool isSliding = false;
     private int jumpCount = 0;
     private int lastLane;
+    bool isJumping = false;
 
     [SerializeField] private float fallMultiplier = 2.5f;
     [SerializeField] private float customGravity = -9.81f;
@@ -57,6 +58,11 @@ public class PlayerController : MonoBehaviour
         else if (desiredLane == 2)
         {
             targetPosition.x = LANE_DISTANCE;
+        }
+
+        if (isJumping && IsGrounded()) {
+            isJumping = false;
+            anim.Play(runningState);
         }
 
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
@@ -217,5 +223,9 @@ public class PlayerController : MonoBehaviour
     public void SideCollision()
     {
         desiredLane = lastLane;
+    }
+
+    public void Jumping () {
+        isJumping = true;
     }
 }

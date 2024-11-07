@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9eaca8e3113780644bb8ba41026b0dd3, type: 3}
   m_Name: CustomizedData
   m_EditorClassIdentifier: 
-  accessory: {fileID: 0}
+  headSlot: {fileID: 0}
+  backSlot: {fileID: 0}

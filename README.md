@@ -76,7 +76,36 @@ ChaoticSharpRunner는 장애물을 피하며 생존하는 3D 런닝 게임입니
 ![image](https://github.com/user-attachments/assets/5d871d79-7787-4b9a-8daf-442481a8b078)
 
 ## Trouble Shooting
-맵 간격 벌어짐 현상 - 오브젝트의 생성 위치 계산을 줄이고 생성은 Update에서 이동은 FixedUpdate에서 실행
+맵 간격 벌어짐 현상 
+
+- 오브젝트의 생성 위치 계산을 줄이고 생성은 Update에서 이동은 FixedUpdate에서 실행.
+
+씬에서 InGameDescriptionPanel이 표시되지 않던 현상 
+
+- SceneManager.sceneLoaded 이벤트를 이용해 패널을 가장 먼저 표시되도록 설정.
+
+GameOver 시 TogglePause가 중복으로 호출되어 일시정지 창이 겹쳐서 표시되는 현상
+
+- GameOver 호출 시 Time.timeScale을 직접 0으로 설정하여 일시정지 상태로 만들고, TogglePause를 별도로 호출하지 않도록 조정.
+
+isPaused 상태를 관리하여 게임 오버 상황에서 ESC 키를 눌러도 일시정지 창이 뜨지 않게 예외처리 추가.
+
+게임 씬 전환 시 UI 인스턴스가 중복 생성되는 현상
+
+- OnDestroy를 활용하여 씬 로드가 완료되기 전에 이벤트를 안전하게 구독 해제하고 UI를 초기화.
+
+PlayerController의 이동 및 점프 기능이 일시정지 상태에서도 작동하는 현상
+
+- GameManager.Instance.IsPaused를 통해 현재 게임의 일시정지 상태를 확인한 후,
+
+PlayerController의 입력 처리 메서드에서 일시정지 상태일 경우 동작을 차단하는 로직 추가.
+
+## 교훈 및 개선점:
+씬 로드 시 이벤트 구독 순서와 각 클래스의 초기화 순서가 게임 흐름에 중요한 영향을 미친다는 것을 확인.
+
+중앙 관리 클래스(GameManager)를 통해 게임 상태와 UI 상태를 통합적으로 관리하되,
+
+UI 관련 이벤트와 상태는 별도 UI 관리자(UIManager)에서 처리하여 코드의 명확성을 높이는 방식이 효과적임.
 
 ## 프로젝트를 마치며
 팀장. 이태경 : 지금까지 중의 프로젝트 중에 제일 어려웠지만, 서로 맡은 바 최선을 다해서 좋은 결과물을 낼 수 있어서 뿌듯합니다.

@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private Collider sideCollisionCheckCollider;
     [SerializeField] private Animator anim;
+    int runningState = Animator.StringToHash("Base Layer.RUN00_F");
 
     void Awake()
     {
@@ -127,8 +128,11 @@ public class PlayerController : MonoBehaviour
             AudioManager.Instance.PlaySoundFXClip(AudioClipName.Sfx_46, transform.position, 0.5f);
             AudioManager.Instance.PlaySoundFXClip(AudioClipName.UnityChan_Yat, transform.position, 0.5f);
 
-            if (anim != null)
-                anim?.SetTrigger("jump");
+            if (anim != null) {
+                if (anim.GetCurrentAnimatorStateInfo(0).fullPathHash == runningState) {
+                    anim.SetTrigger("jump");
+                }
+            }
         }
     }
 
@@ -142,8 +146,11 @@ public class PlayerController : MonoBehaviour
         AudioManager.Instance.PlaySoundFXClip(AudioClipName.Sfx_47, transform.position, 0.5f);
         AudioManager.Instance.PlaySoundFXClip(AudioClipName.UnityChan_Yat, transform.position, 0.5f);
 
-        if (anim != null)
-            anim?.SetTrigger("slide");
+        if (anim != null) {
+            if (anim.GetCurrentAnimatorStateInfo(0).fullPathHash == runningState) {
+                anim.SetTrigger("slide");
+            }
+        }
     }
 
     private bool IsGrounded()

@@ -70,7 +70,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreCollider: {fileID: 3909649854265645136}
-  damage: 0
+  damage: 10
 --- !u!1 &2188385035965993652
 GameObject:
   m_ObjectHideFlags: 0

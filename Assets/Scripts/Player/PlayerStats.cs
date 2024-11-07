@@ -22,7 +22,7 @@ public class PlayerStats : MonoBehaviour
     public bool isInvincible { get; private set; }
     public bool isSuperArmor { get; private set; }
 
-    [SerializeField] private int maxHealth = 100;
+    [SerializeField] private int maxHealth = 30;
     [SerializeField] private int maxLife = 3;
     [SerializeField] private float invincibilityDuration = 3;
 

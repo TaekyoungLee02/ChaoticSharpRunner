@@ -1886,9 +1886,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthUIBar: {fileID: 5551868145668709277}
   lifeIcons:
-  - {fileID: 2803626863428732684}
-  - {fileID: 2591760200166120690}
   - {fileID: 1939348174358366689}
+  - {fileID: 2591760200166120690}
+  - {fileID: 2803626863428732684}
   abilityGaugeUIBar: {fileID: 5123960497198143879}
 --- !u!1 &7838771320932062003
 GameObject:

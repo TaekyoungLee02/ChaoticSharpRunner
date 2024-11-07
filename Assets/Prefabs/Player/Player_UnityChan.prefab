@@ -4937,7 +4937,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _health: 100
   _life: 0
-  maxHealth: 100
+  maxHealth: 30
   maxLife: 3
   invincibilityDuration: 2
   playerBlink: {fileID: 0}

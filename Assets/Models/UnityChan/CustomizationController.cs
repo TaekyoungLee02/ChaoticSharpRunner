@@ -22,7 +22,8 @@ public class CustomizationController : MonoBehaviour
         m_SocketDic.Add(SlotLocation.Head, m_HeadSlot);
         m_SocketDic.Add(SlotLocation.Back, m_BackSlot);
 
-        customizedData = Resources.Load<CustomizedDataSO>("Data/CustomizedData");
+        //customizedData = Resources.Load<CustomizedDataSO>("Data/CustomizedData");
+        customizedData = Global.customData;
         EquipAccessory(SlotLocation.Head, customizedData.headSlot);
         EquipAccessory(SlotLocation.Back, customizedData.backSlot);
     }

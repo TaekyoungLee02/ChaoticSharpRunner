@@ -23,7 +23,8 @@ public class SlotSlider : MonoBehaviour
         m_Slider.maxValue = m_AccessoryDataList.Count;
         m_AccessoryDataList.Insert(0, null);
 
-        m_CustomizedData = Resources.Load<CustomizedDataSO>("Data/CustomizedData");
+        //m_CustomizedData = Resources.Load<CustomizedDataSO>("Data/CustomizedData");
+        m_CustomizedData = Global.customData;
     }
 
     private void ChangeAccessory(float floatValue)

@@ -102,6 +102,7 @@ public class GameManager : Singleton<GameManager>
     public void GoToTitleScene()
     {
         OnGoToTitleScene?.Invoke();
+        ScoreManager.Instance.InitializeScore();
         SceneManager.LoadScene("TitleScene");
     }
 

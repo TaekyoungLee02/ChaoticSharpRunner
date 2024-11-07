@@ -28,6 +28,8 @@ public class GameManager : Singleton<GameManager>
         {
             ShowTitleScreen();
         }
+
+        AudioManager.Instance.PlayBGMClip(AudioClipName.Bgm_CasualGame03, 0.3f);
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -78,9 +80,6 @@ public class GameManager : Singleton<GameManager>
     {
         player?.ResetPlayer();
         OnGameReset?.Invoke();
-
-        AudioManager.Instance.PlayBGMClip(AudioClipName.Bgm_CasualGame03, 0.3f);
-
     }
 
     public void RestartGame()
@@ -102,9 +101,6 @@ public class GameManager : Singleton<GameManager>
     {
         OnGoToTitleScene?.Invoke();
         SceneManager.LoadScene("TitleScene");
-
-        AudioManager.Instance.StopBackgroundMusic();
-
     }
 
     public void ResumeGame()

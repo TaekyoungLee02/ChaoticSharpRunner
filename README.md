@@ -88,7 +88,7 @@ GameOver 시 TogglePause가 중복으로 호출되어 일시정지 창이 겹쳐
 
 - GameOver 호출 시 Time.timeScale을 직접 0으로 설정하여 일시정지 상태로 만들고, TogglePause를 별도로 호출하지 않도록 조정.
 
-isPaused 상태를 관리하여 게임 오버 상황에서 ESC 키를 눌러도 일시정지 창이 뜨지 않게 예외처리 추가.
+- isPaused 상태를 관리하여 게임 오버 상황에서 ESC 키를 눌러도 일시정지 창이 뜨지 않게 예외처리 추가.
 
 게임 씬 전환 시 UI 인스턴스가 중복 생성되는 현상
 
@@ -98,7 +98,7 @@ PlayerController의 이동 및 점프 기능이 일시정지 상태에서도 작
 
 - GameManager.Instance.IsPaused를 통해 현재 게임의 일시정지 상태를 확인한 후,
 
-PlayerController의 입력 처리 메서드에서 일시정지 상태일 경우 동작을 차단하는 로직 추가.
+- PlayerController의 입력 처리 메서드에서 일시정지 상태일 경우 동작을 차단하는 로직 추가.
 
 ## 교훈 및 개선점:
 씬 로드 시 이벤트 구독 순서와 각 클래스의 초기화 순서가 게임 흐름에 중요한 영향을 미친다는 것을 확인.
